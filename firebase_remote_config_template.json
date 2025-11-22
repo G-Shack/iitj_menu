@@ -1,0 +1,993 @@
+{
+    "menu_version": "1.0.0",
+    "last_updated": "2024-11-23T10:00:00Z",
+    "weekly_menu": {
+        "monday": {
+            "breakfast": {
+                "name": "Breakfast",
+                "icon": "sunrise",
+                "start_time": "07:00",
+                "end_time": "09:30",
+                "items": [
+                    {
+                        "name": "Poha with Namkeen",
+                        "type": "veg",
+                        "allergens": []
+                    },
+                    {
+                        "name": "Bread & Butter",
+                        "type": "veg",
+                        "allergens": [
+                            "gluten",
+                            "dairy"
+                        ]
+                    },
+                    {
+                        "name": "Banana",
+                        "type": "vegan",
+                        "allergens": []
+                    },
+                    {
+                        "name": "Tea/Coffee/Milk",
+                        "type": "veg",
+                        "allergens": [
+                            "dairy"
+                        ]
+                    }
+                ],
+                "special_note": ""
+            },
+            "lunch": {
+                "name": "Lunch",
+                "icon": "restaurant",
+                "start_time": "11:30",
+                "end_time": "14:00",
+                "items": [
+                    {
+                        "name": "Dal Tadka",
+                        "type": "veg",
+                        "allergens": []
+                    },
+                    {
+                        "name": "Paneer Butter Masala",
+                        "type": "veg",
+                        "allergens": [
+                            "dairy"
+                        ]
+                    },
+                    {
+                        "name": "Jeera Rice",
+                        "type": "vegan",
+                        "allergens": []
+                    },
+                    {
+                        "name": "Roti (4 pcs)",
+                        "type": "vegan",
+                        "allergens": [
+                            "gluten"
+                        ]
+                    },
+                    {
+                        "name": "Salad & Pickle",
+                        "type": "vegan",
+                        "allergens": []
+                    },
+                    {
+                        "name": "Gulab Jamun",
+                        "type": "veg",
+                        "allergens": [
+                            "dairy",
+                            "gluten"
+                        ]
+                    }
+                ],
+                "special_note": "Chef's Special Today!"
+            },
+            "snacks": {
+                "name": "Snacks",
+                "icon": "local_cafe",
+                "start_time": "16:30",
+                "end_time": "18:00",
+                "items": [
+                    {
+                        "name": "Samosa (2 pcs)",
+                        "type": "veg",
+                        "allergens": [
+                            "gluten"
+                        ]
+                    },
+                    {
+                        "name": "Green Chutney",
+                        "type": "vegan",
+                        "allergens": []
+                    },
+                    {
+                        "name": "Tea/Coffee",
+                        "type": "veg",
+                        "allergens": [
+                            "dairy"
+                        ]
+                    }
+                ],
+                "special_note": ""
+            },
+            "dinner": {
+                "name": "Dinner",
+                "icon": "dinner_dining",
+                "start_time": "19:30",
+                "end_time": "22:00",
+                "items": [
+                    {
+                        "name": "Mixed Dal",
+                        "type": "veg",
+                        "allergens": []
+                    },
+                    {
+                        "name": "Aloo Gobi",
+                        "type": "vegan",
+                        "allergens": []
+                    },
+                    {
+                        "name": "Plain Rice",
+                        "type": "vegan",
+                        "allergens": []
+                    },
+                    {
+                        "name": "Roti (4 pcs)",
+                        "type": "vegan",
+                        "allergens": [
+                            "gluten"
+                        ]
+                    },
+                    {
+                        "name": "Curd",
+                        "type": "veg",
+                        "allergens": [
+                            "dairy"
+                        ]
+                    }
+                ],
+                "special_note": ""
+            }
+        },
+        "tuesday": {
+            "breakfast": {
+                "name": "Breakfast",
+                "icon": "sunrise",
+                "start_time": "07:00",
+                "end_time": "09:30",
+                "items": [
+                    {
+                        "name": "Idli Sambar",
+                        "type": "veg",
+                        "allergens": []
+                    },
+                    {
+                        "name": "Coconut Chutney",
+                        "type": "vegan",
+                        "allergens": []
+                    },
+                    {
+                        "name": "Bread & Jam",
+                        "type": "veg",
+                        "allergens": [
+                            "gluten"
+                        ]
+                    },
+                    {
+                        "name": "Tea/Coffee",
+                        "type": "veg",
+                        "allergens": [
+                            "dairy"
+                        ]
+                    }
+                ],
+                "special_note": ""
+            },
+            "lunch": {
+                "name": "Lunch",
+                "icon": "restaurant",
+                "start_time": "11:30",
+                "end_time": "14:00",
+                "items": [
+                    {
+                        "name": "Rajma",
+                        "type": "veg",
+                        "allergens": []
+                    },
+                    {
+                        "name": "Mixed Veg",
+                        "type": "veg",
+                        "allergens": []
+                    },
+                    {
+                        "name": "Steamed Rice",
+                        "type": "vegan",
+                        "allergens": []
+                    },
+                    {
+                        "name": "Roti",
+                        "type": "vegan",
+                        "allergens": [
+                            "gluten"
+                        ]
+                    },
+                    {
+                        "name": "Papad",
+                        "type": "vegan",
+                        "allergens": []
+                    }
+                ],
+                "special_note": ""
+            },
+            "snacks": {
+                "name": "Snacks",
+                "icon": "local_cafe",
+                "start_time": "16:30",
+                "end_time": "18:00",
+                "items": [
+                    {
+                        "name": "Bread Pakora",
+                        "type": "veg",
+                        "allergens": [
+                            "gluten"
+                        ]
+                    },
+                    {
+                        "name": "Sauce",
+                        "type": "vegan",
+                        "allergens": []
+                    },
+                    {
+                        "name": "Tea/Coffee",
+                        "type": "veg",
+                        "allergens": [
+                            "dairy"
+                        ]
+                    }
+                ],
+                "special_note": ""
+            },
+            "dinner": {
+                "name": "Dinner",
+                "icon": "dinner_dining",
+                "start_time": "19:30",
+                "end_time": "22:00",
+                "items": [
+                    {
+                        "name": "Dal Fry",
+                        "type": "veg",
+                        "allergens": []
+                    },
+                    {
+                        "name": "Bhindi Masala",
+                        "type": "vegan",
+                        "allergens": []
+                    },
+                    {
+                        "name": "Rice",
+                        "type": "vegan",
+                        "allergens": []
+                    },
+                    {
+                        "name": "Chapati",
+                        "type": "vegan",
+                        "allergens": [
+                            "gluten"
+                        ]
+                    },
+                    {
+                        "name": "Salad",
+                        "type": "vegan",
+                        "allergens": []
+                    }
+                ],
+                "special_note": ""
+            }
+        },
+        "wednesday": {
+            "breakfast": {
+                "name": "Breakfast",
+                "icon": "sunrise",
+                "start_time": "07:00",
+                "end_time": "09:30",
+                "items": [
+                    {
+                        "name": "Upma",
+                        "type": "veg",
+                        "allergens": []
+                    },
+                    {
+                        "name": "Bread & Butter",
+                        "type": "veg",
+                        "allergens": [
+                            "gluten",
+                            "dairy"
+                        ]
+                    },
+                    {
+                        "name": "Boiled Egg",
+                        "type": "eggetarian",
+                        "allergens": []
+                    },
+                    {
+                        "name": "Tea/Coffee",
+                        "type": "veg",
+                        "allergens": [
+                            "dairy"
+                        ]
+                    }
+                ],
+                "special_note": ""
+            },
+            "lunch": {
+                "name": "Lunch",
+                "icon": "restaurant",
+                "start_time": "11:30",
+                "end_time": "14:00",
+                "items": [
+                    {
+                        "name": "Chole",
+                        "type": "veg",
+                        "allergens": []
+                    },
+                    {
+                        "name": "Aloo Matar",
+                        "type": "veg",
+                        "allergens": []
+                    },
+                    {
+                        "name": "Rice",
+                        "type": "vegan",
+                        "allergens": []
+                    },
+                    {
+                        "name": "Puri",
+                        "type": "veg",
+                        "allergens": [
+                            "gluten"
+                        ]
+                    },
+                    {
+                        "name": "Sweet Dish",
+                        "type": "veg",
+                        "allergens": [
+                            "dairy"
+                        ]
+                    }
+                ],
+                "special_note": ""
+            },
+            "snacks": {
+                "name": "Snacks",
+                "icon": "local_cafe",
+                "start_time": "16:30",
+                "end_time": "18:00",
+                "items": [
+                    {
+                        "name": "Aloo Bonda",
+                        "type": "veg",
+                        "allergens": []
+                    },
+                    {
+                        "name": "Chutney",
+                        "type": "vegan",
+                        "allergens": []
+                    },
+                    {
+                        "name": "Tea/Coffee",
+                        "type": "veg",
+                        "allergens": [
+                            "dairy"
+                        ]
+                    }
+                ],
+                "special_note": ""
+            },
+            "dinner": {
+                "name": "Dinner",
+                "icon": "dinner_dining",
+                "start_time": "19:30",
+                "end_time": "22:00",
+                "items": [
+                    {
+                        "name": "Dal",
+                        "type": "veg",
+                        "allergens": []
+                    },
+                    {
+                        "name": "Veg Curry",
+                        "type": "veg",
+                        "allergens": []
+                    },
+                    {
+                        "name": "Rice",
+                        "type": "vegan",
+                        "allergens": []
+                    },
+                    {
+                        "name": "Roti",
+                        "type": "vegan",
+                        "allergens": [
+                            "gluten"
+                        ]
+                    },
+                    {
+                        "name": "Raita",
+                        "type": "veg",
+                        "allergens": [
+                            "dairy"
+                        ]
+                    }
+                ],
+                "special_note": ""
+            }
+        },
+        "thursday": {
+            "breakfast": {
+                "name": "Breakfast",
+                "icon": "sunrise",
+                "start_time": "07:00",
+                "end_time": "09:30",
+                "items": [
+                    {
+                        "name": "Aloo Paratha",
+                        "type": "veg",
+                        "allergens": [
+                            "gluten"
+                        ]
+                    },
+                    {
+                        "name": "Curd",
+                        "type": "veg",
+                        "allergens": [
+                            "dairy"
+                        ]
+                    },
+                    {
+                        "name": "Pickle",
+                        "type": "vegan",
+                        "allergens": []
+                    },
+                    {
+                        "name": "Tea/Coffee",
+                        "type": "veg",
+                        "allergens": [
+                            "dairy"
+                        ]
+                    }
+                ],
+                "special_note": ""
+            },
+            "lunch": {
+                "name": "Lunch",
+                "icon": "restaurant",
+                "start_time": "11:30",
+                "end_time": "14:00",
+                "items": [
+                    {
+                        "name": "Dal Makhani",
+                        "type": "veg",
+                        "allergens": [
+                            "dairy"
+                        ]
+                    },
+                    {
+                        "name": "Palak Paneer",
+                        "type": "veg",
+                        "allergens": [
+                            "dairy"
+                        ]
+                    },
+                    {
+                        "name": "Pulao",
+                        "type": "veg",
+                        "allergens": []
+                    },
+                    {
+                        "name": "Naan",
+                        "type": "veg",
+                        "allergens": [
+                            "gluten"
+                        ]
+                    },
+                    {
+                        "name": "Salad",
+                        "type": "vegan",
+                        "allergens": []
+                    }
+                ],
+                "special_note": ""
+            },
+            "snacks": {
+                "name": "Snacks",
+                "icon": "local_cafe",
+                "start_time": "16:30",
+                "end_time": "18:00",
+                "items": [
+                    {
+                        "name": "Veg Cutlet",
+                        "type": "veg",
+                        "allergens": [
+                            "gluten"
+                        ]
+                    },
+                    {
+                        "name": "Ketchup",
+                        "type": "vegan",
+                        "allergens": []
+                    },
+                    {
+                        "name": "Tea/Coffee",
+                        "type": "veg",
+                        "allergens": [
+                            "dairy"
+                        ]
+                    }
+                ],
+                "special_note": ""
+            },
+            "dinner": {
+                "name": "Dinner",
+                "icon": "dinner_dining",
+                "start_time": "19:30",
+                "end_time": "22:00",
+                "items": [
+                    {
+                        "name": "Dal",
+                        "type": "veg",
+                        "allergens": []
+                    },
+                    {
+                        "name": "Sabzi",
+                        "type": "veg",
+                        "allergens": []
+                    },
+                    {
+                        "name": "Rice",
+                        "type": "vegan",
+                        "allergens": []
+                    },
+                    {
+                        "name": "Roti",
+                        "type": "vegan",
+                        "allergens": [
+                            "gluten"
+                        ]
+                    },
+                    {
+                        "name": "Sweet",
+                        "type": "veg",
+                        "allergens": [
+                            "dairy"
+                        ]
+                    }
+                ],
+                "special_note": ""
+            }
+        },
+        "friday": {
+            "breakfast": {
+                "name": "Breakfast",
+                "icon": "sunrise",
+                "start_time": "07:00",
+                "end_time": "09:30",
+                "items": [
+                    {
+                        "name": "Dosa",
+                        "type": "veg",
+                        "allergens": []
+                    },
+                    {
+                        "name": "Sambar",
+                        "type": "veg",
+                        "allergens": []
+                    },
+                    {
+                        "name": "Coconut Chutney",
+                        "type": "vegan",
+                        "allergens": []
+                    },
+                    {
+                        "name": "Tea/Coffee",
+                        "type": "veg",
+                        "allergens": [
+                            "dairy"
+                        ]
+                    }
+                ],
+                "special_note": ""
+            },
+            "lunch": {
+                "name": "Lunch",
+                "icon": "restaurant",
+                "start_time": "11:30",
+                "end_time": "14:00",
+                "items": [
+                    {
+                        "name": "Kadhi Pakora",
+                        "type": "veg",
+                        "allergens": [
+                            "dairy"
+                        ]
+                    },
+                    {
+                        "name": "Aloo Jeera",
+                        "type": "veg",
+                        "allergens": []
+                    },
+                    {
+                        "name": "Rice",
+                        "type": "vegan",
+                        "allergens": []
+                    },
+                    {
+                        "name": "Roti",
+                        "type": "vegan",
+                        "allergens": [
+                            "gluten"
+                        ]
+                    },
+                    {
+                        "name": "Papad",
+                        "type": "vegan",
+                        "allergens": []
+                    }
+                ],
+                "special_note": ""
+            },
+            "snacks": {
+                "name": "Snacks",
+                "icon": "local_cafe",
+                "start_time": "16:30",
+                "end_time": "18:00",
+                "items": [
+                    {
+                        "name": "Pakora",
+                        "type": "veg",
+                        "allergens": [
+                            "gluten"
+                        ]
+                    },
+                    {
+                        "name": "Green Chutney",
+                        "type": "vegan",
+                        "allergens": []
+                    },
+                    {
+                        "name": "Tea/Coffee",
+                        "type": "veg",
+                        "allergens": [
+                            "dairy"
+                        ]
+                    }
+                ],
+                "special_note": ""
+            },
+            "dinner": {
+                "name": "Dinner",
+                "icon": "dinner_dining",
+                "start_time": "19:30",
+                "end_time": "22:00",
+                "items": [
+                    {
+                        "name": "Dal",
+                        "type": "veg",
+                        "allergens": []
+                    },
+                    {
+                        "name": "Veg Sabzi",
+                        "type": "veg",
+                        "allergens": []
+                    },
+                    {
+                        "name": "Rice",
+                        "type": "vegan",
+                        "allergens": []
+                    },
+                    {
+                        "name": "Chapati",
+                        "type": "vegan",
+                        "allergens": [
+                            "gluten"
+                        ]
+                    },
+                    {
+                        "name": "Curd",
+                        "type": "veg",
+                        "allergens": [
+                            "dairy"
+                        ]
+                    }
+                ],
+                "special_note": ""
+            }
+        },
+        "saturday": {
+            "breakfast": {
+                "name": "Breakfast",
+                "icon": "sunrise",
+                "start_time": "07:30",
+                "end_time": "10:00",
+                "items": [
+                    {
+                        "name": "Chole Bhature",
+                        "type": "veg",
+                        "allergens": [
+                            "gluten"
+                        ]
+                    },
+                    {
+                        "name": "Onion Salad",
+                        "type": "vegan",
+                        "allergens": []
+                    },
+                    {
+                        "name": "Pickle",
+                        "type": "vegan",
+                        "allergens": []
+                    },
+                    {
+                        "name": "Tea/Coffee",
+                        "type": "veg",
+                        "allergens": [
+                            "dairy"
+                        ]
+                    }
+                ],
+                "special_note": "Weekend Special!"
+            },
+            "lunch": {
+                "name": "Lunch",
+                "icon": "restaurant",
+                "start_time": "12:00",
+                "end_time": "14:30",
+                "items": [
+                    {
+                        "name": "Dal",
+                        "type": "veg",
+                        "allergens": []
+                    },
+                    {
+                        "name": "Paneer Tikka Masala",
+                        "type": "veg",
+                        "allergens": [
+                            "dairy"
+                        ]
+                    },
+                    {
+                        "name": "Jeera Rice",
+                        "type": "vegan",
+                        "allergens": []
+                    },
+                    {
+                        "name": "Butter Naan",
+                        "type": "veg",
+                        "allergens": [
+                            "gluten",
+                            "dairy"
+                        ]
+                    },
+                    {
+                        "name": "Ice Cream",
+                        "type": "veg",
+                        "allergens": [
+                            "dairy"
+                        ]
+                    }
+                ],
+                "special_note": "Saturday Special!"
+            },
+            "snacks": {
+                "name": "Snacks",
+                "icon": "local_cafe",
+                "start_time": "16:30",
+                "end_time": "18:00",
+                "items": [
+                    {
+                        "name": "Paneer Pakora",
+                        "type": "veg",
+                        "allergens": [
+                            "gluten",
+                            "dairy"
+                        ]
+                    },
+                    {
+                        "name": "Mint Chutney",
+                        "type": "vegan",
+                        "allergens": []
+                    },
+                    {
+                        "name": "Tea/Coffee",
+                        "type": "veg",
+                        "allergens": [
+                            "dairy"
+                        ]
+                    }
+                ],
+                "special_note": ""
+            },
+            "dinner": {
+                "name": "Dinner",
+                "icon": "dinner_dining",
+                "start_time": "19:30",
+                "end_time": "22:00",
+                "items": [
+                    {
+                        "name": "Dal",
+                        "type": "veg",
+                        "allergens": []
+                    },
+                    {
+                        "name": "Mix Veg",
+                        "type": "veg",
+                        "allergens": []
+                    },
+                    {
+                        "name": "Rice",
+                        "type": "vegan",
+                        "allergens": []
+                    },
+                    {
+                        "name": "Roti",
+                        "type": "vegan",
+                        "allergens": [
+                            "gluten"
+                        ]
+                    },
+                    {
+                        "name": "Salad",
+                        "type": "vegan",
+                        "allergens": []
+                    }
+                ],
+                "special_note": ""
+            }
+        },
+        "sunday": {
+            "breakfast": {
+                "name": "Breakfast",
+                "icon": "sunrise",
+                "start_time": "07:30",
+                "end_time": "10:00",
+                "items": [
+                    {
+                        "name": "Puri Bhaji",
+                        "type": "veg",
+                        "allergens": [
+                            "gluten"
+                        ]
+                    },
+                    {
+                        "name": "Halwa",
+                        "type": "veg",
+                        "allergens": [
+                            "gluten",
+                            "dairy"
+                        ]
+                    },
+                    {
+                        "name": "Banana",
+                        "type": "vegan",
+                        "allergens": []
+                    },
+                    {
+                        "name": "Tea/Coffee",
+                        "type": "veg",
+                        "allergens": [
+                            "dairy"
+                        ]
+                    }
+                ],
+                "special_note": "Sunday Special!"
+            },
+            "lunch": {
+                "name": "Lunch",
+                "icon": "restaurant",
+                "start_time": "12:00",
+                "end_time": "14:30",
+                "items": [
+                    {
+                        "name": "Rajma",
+                        "type": "veg",
+                        "allergens": []
+                    },
+                    {
+                        "name": "Paneer Butter Masala",
+                        "type": "veg",
+                        "allergens": [
+                            "dairy"
+                        ]
+                    },
+                    {
+                        "name": "Pulao",
+                        "type": "veg",
+                        "allergens": []
+                    },
+                    {
+                        "name": "Naan",
+                        "type": "veg",
+                        "allergens": [
+                            "gluten"
+                        ]
+                    },
+                    {
+                        "name": "Gulab Jamun",
+                        "type": "veg",
+                        "allergens": [
+                            "dairy",
+                            "gluten"
+                        ]
+                    }
+                ],
+                "special_note": "Sunday Special Meal!"
+            },
+            "snacks": {
+                "name": "Snacks",
+                "icon": "local_cafe",
+                "start_time": "16:30",
+                "end_time": "18:00",
+                "items": [
+                    {
+                        "name": "Veg Sandwich",
+                        "type": "veg",
+                        "allergens": [
+                            "gluten"
+                        ]
+                    },
+                    {
+                        "name": "Chips",
+                        "type": "vegan",
+                        "allergens": []
+                    },
+                    {
+                        "name": "Tea/Coffee",
+                        "type": "veg",
+                        "allergens": [
+                            "dairy"
+                        ]
+                    }
+                ],
+                "special_note": ""
+            },
+            "dinner": {
+                "name": "Dinner",
+                "icon": "dinner_dining",
+                "start_time": "19:30",
+                "end_time": "22:00",
+                "items": [
+                    {
+                        "name": "Dal",
+                        "type": "veg",
+                        "allergens": []
+                    },
+                    {
+                        "name": "Sabzi",
+                        "type": "veg",
+                        "allergens": []
+                    },
+                    {
+                        "name": "Rice",
+                        "type": "vegan",
+                        "allergens": []
+                    },
+                    {
+                        "name": "Roti",
+                        "type": "vegan",
+                        "allergens": [
+                            "gluten"
+                        ]
+                    },
+                    {
+                        "name": "Curd",
+                        "type": "veg",
+                        "allergens": [
+                            "dairy"
+                        ]
+                    }
+                ],
+                "special_note": ""
+            }
+        }
+    }
+}

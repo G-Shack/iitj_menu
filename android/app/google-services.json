@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "941632848340",
+    "project_id": "iitj-menu-89112",
+    "storage_bucket": "iitj-menu-89112.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:941632848340:android:6c0d4639f8c55f112fd641",
+        "android_client_info": {
+          "package_name": "com.appier.iitjmenu"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAVMMNYSaMTNPQFl5kIS4c9J-6YlH0RilM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
