@@ -1,14 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../../../providers/menu_provider.dart';
-import '../../../providers/theme_provider.dart';
+import '../../../providers/dietary_preference_provider.dart';
 import '../../../core/constants/app_dimensions.dart';
 import '../../../core/constants/app_text_styles.dart';
 import 'widgets/header_section.dart';
 import 'widgets/current_meal_indicator.dart';
 import 'widgets/meal_card.dart';
-import '../../widgets/meal_detail_sheet.dart';
-import '../../../data/models/meal_model.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -60,10 +58,10 @@ class _HomeScreenState extends State<HomeScreen>
               child: HeaderSection(
                 onDaySelected: _onDaySelected,
                 selectedDay: _selectedDay,
-                onThemeToggle: () {
-                  context.read<ThemeProvider>().toggleTheme();
+                onDietaryToggle: () {
+                  context.read<DietaryPreferenceProvider>().togglePreference();
                 },
-                isDarkMode: context.watch<ThemeProvider>().isDarkMode,
+                isVeg: context.watch<DietaryPreferenceProvider>().isVeg,
               ),
             ),
 
@@ -152,10 +150,14 @@ class _HomeScreenState extends State<HomeScreen>
                               ),
                             );
                           },
-                          child: MealCard(
-                            meal: meal,
-                            state: meal.state,
-                            onTap: () => _showMealDetails(context, meal),
+                          child: Consumer<DietaryPreferenceProvider>(
+                            builder: (context, dietaryProvider, _) {
+                              return MealCard(
+                                meal: meal,
+                                state: meal.state,
+                                isVeg: dietaryProvider.isVeg,
+                              );
+                            },
                           ),
                         );
                       },
@@ -173,15 +175,6 @@ class _HomeScreenState extends State<HomeScreen>
           ],
         ),
       ),
-    );
-  }
-
-  void _showMealDetails(BuildContext context, Meal meal) {
-    showModalBottomSheet(
-      context: context,
-      isScrollControlled: true,
-      backgroundColor: Colors.transparent,
-      builder: (context) => MealDetailSheet(meal: meal),
     );
   }
 }

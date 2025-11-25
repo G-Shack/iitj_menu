@@ -30,8 +30,12 @@ class MenuProvider extends ChangeNotifier {
       'saturday',
       'sunday'
     ];
-    if (dayIndex < 0 || dayIndex >= days.length) return null;
-    return _weeklyMenu[days[dayIndex]];
+    if (dayIndex < 0 || dayIndex >= days.length) {
+      return null;
+    }
+    final dayName = days[dayIndex];
+    final menu = _weeklyMenu[dayName];
+    return menu;
   }
 
   DayMenu? get todayMenu {

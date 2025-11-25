@@ -13,16 +13,22 @@ class Meal extends Equatable {
   final String icon;
   final TimeOfDay startTime;
   final TimeOfDay endTime;
-  final List<MenuItem> items;
-  final String? specialNote;
+  final List<MenuItem> vegItems;
+  final List<MenuItem> nonVegItems;
+  final List<MenuItem> jainItems;
+  final String? specialNoteVeg;
+  final String? specialNoteNonVeg;
 
   const Meal({
     required this.name,
     required this.icon,
     required this.startTime,
     required this.endTime,
-    required this.items,
-    this.specialNote,
+    required this.vegItems,
+    required this.nonVegItems,
+    required this.jainItems,
+    this.specialNoteVeg,
+    this.specialNoteNonVeg,
   });
 
   bool get isActive {
@@ -46,16 +52,42 @@ class Meal extends Equatable {
     return MealState.upcoming;
   }
 
+  // Get items based on dietary preference
+  List<MenuItem> getItems(bool isVeg) {
+    if (isVeg) {
+      // Combine veg and jain items
+      return [...vegItems, ...jainItems];
+    } else {
+      // Show only non-veg items
+      return nonVegItems;
+    }
+  }
+
+  // Get special note based on dietary preference
+  String? getSpecialNote(bool isVeg) {
+    return isVeg ? specialNoteVeg : specialNoteNonVeg;
+  }
+
   factory Meal.fromJson(String mealName, Map<String, dynamic> json) {
     return Meal(
       name: json['name'] as String? ?? mealName,
       icon: json['icon'] as String? ?? 'restaurant_menu',
       startTime: _parseTime(json['start_time'] as String),
       endTime: _parseTime(json['end_time'] as String),
-      items: (json['items'] as List<dynamic>)
-          .map((item) => MenuItem.fromJson(item as Map<String, dynamic>))
-          .toList(),
-      specialNote: json['special_note'] as String?,
+      vegItems: (json['veg'] as List<dynamic>?)
+              ?.map((item) => MenuItem(name: item as String))
+              .toList() ??
+          [],
+      nonVegItems: (json['non_veg'] as List<dynamic>?)
+              ?.map((item) => MenuItem(name: item as String))
+              .toList() ??
+          [],
+      jainItems: (json['jain'] as List<dynamic>?)
+              ?.map((item) => MenuItem(name: item as String))
+              .toList() ??
+          [],
+      specialNoteVeg: json['special_note_veg'] as String?,
+      specialNoteNonVeg: json['special_note_non_veg'] as String?,
     );
   }
 
@@ -67,8 +99,11 @@ class Meal extends Equatable {
           '${startTime.hour.toString().padLeft(2, '0')}:${startTime.minute.toString().padLeft(2, '0')}',
       'end_time':
           '${endTime.hour.toString().padLeft(2, '0')}:${endTime.minute.toString().padLeft(2, '0')}',
-      'items': items.map((item) => item.toJson()).toList(),
-      'special_note': specialNote,
+      'veg': vegItems.map((item) => item.name).toList(),
+      'non_veg': nonVegItems.map((item) => item.name).toList(),
+      'jain': jainItems.map((item) => item.name).toList(),
+      'special_note_veg': specialNoteVeg,
+      'special_note_non_veg': specialNoteNonVeg,
     };
   }
 
@@ -81,6 +116,15 @@ class Meal extends Equatable {
   }
 
   @override
-  List<Object?> get props =>
-      [name, icon, startTime, endTime, items, specialNote];
+  List<Object?> get props => [
+        name,
+        icon,
+        startTime,
+        endTime,
+        vegItems,
+        nonVegItems,
+        jainItems,
+        specialNoteVeg,
+        specialNoteNonVeg
+      ];
 }

@@ -5,7 +5,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_remote_config/firebase_remote_config.dart';
 import 'firebase_options.dart';
 import 'core/theme/app_theme.dart';
-import 'providers/theme_provider.dart';
+import 'providers/dietary_preference_provider.dart';
 import 'providers/menu_provider.dart';
 import 'data/services/remote_config_service.dart';
 import 'data/services/cache_service.dart';
@@ -38,7 +38,7 @@ void main() async {
   runApp(
     MultiProvider(
       providers: [
-        ChangeNotifierProvider(create: (_) => ThemeProvider()),
+        ChangeNotifierProvider(create: (_) => DietaryPreferenceProvider()),
         ChangeNotifierProvider(
           create: (_) =>
               MenuProvider(remoteConfigService, cacheService)..initialize(),
@@ -54,21 +54,16 @@ class IITJMenuApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Consumer<ThemeProvider>(
-      builder: (context, themeProvider, _) {
-        return MaterialApp(
-          title: 'IITJ Menu',
-          debugShowCheckedModeBanner: false,
-          theme: AppTheme.lightTheme(),
-          darkTheme: AppTheme.darkTheme(),
-          themeMode:
-              themeProvider.isDarkMode ? ThemeMode.dark : ThemeMode.light,
-          initialRoute: '/',
-          routes: {
-            '/': (context) => const SplashScreen(),
-            '/home': (context) => const HomeScreen(),
-          },
-        );
+    return MaterialApp(
+      title: 'IITJ Menu',
+      debugShowCheckedModeBanner: false,
+      theme: AppTheme.lightTheme(),
+      darkTheme: AppTheme.darkTheme(),
+      themeMode: ThemeMode.system,
+      initialRoute: '/',
+      routes: {
+        '/': (context) => const SplashScreen(),
+        '/home': (context) => const HomeScreen(),
       },
     );
   }

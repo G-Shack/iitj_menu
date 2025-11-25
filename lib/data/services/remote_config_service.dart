@@ -73,75 +73,97 @@ class RemoteConfigService {
       'breakfast': {
         'name': 'Breakfast',
         'icon': 'sunrise',
-        'start_time': '07:00',
-        'end_time': '09:30',
-        'items': [
-          {'name': 'Poha', 'type': 'veg', 'allergens': []},
-          {
-            'name': 'Bread & Butter',
-            'type': 'veg',
-            'allergens': ['gluten', 'dairy']
-          },
-          {
-            'name': 'Tea/Coffee',
-            'type': 'veg',
-            'allergens': ['dairy']
-          },
+        'start_time': '08:00',
+        'end_time': '10:30',
+        'veg': [
+          'Poha (Aloo/Sev)',
+          'Sambhar',
+          'Banana (2)',
+          'Bread',
+          'Butter',
+          'Milk',
+          'Tea',
+          'Coffee'
         ],
-        'special_note': '',
+        'non_veg': [
+          'Idli & Medu Vada',
+          'Sambhar',
+          'Coconut Chutney',
+          'Boiled egg (2)',
+          'Toasted bread',
+          'Butter',
+          'Milk',
+          'Tea',
+          'Coffee'
+        ],
+        'jain': ['Banana (2)'],
+        'special_note_veg': '',
+        'special_note_non_veg': '',
       },
       'lunch': {
         'name': 'Lunch',
         'icon': 'restaurant',
-        'start_time': '11:30',
-        'end_time': '14:00',
-        'items': [
-          {'name': 'Dal', 'type': 'veg', 'allergens': []},
-          {'name': 'Sabzi', 'type': 'veg', 'allergens': []},
-          {'name': 'Rice', 'type': 'vegan', 'allergens': []},
-          {
-            'name': 'Roti',
-            'type': 'vegan',
-            'allergens': ['gluten']
-          },
+        'start_time': '12:30',
+        'end_time': '15:00',
+        'veg': [
+          'Plain Rice',
+          'Dal',
+          'Sabzi',
+          'Roti',
+          'Curd',
+          'Salad',
+          'Pickle'
         ],
-        'special_note': '',
+        'non_veg': [
+          'Plain Rice',
+          'Dal',
+          'Sabzi',
+          'Roti',
+          'Curd',
+          'Salad',
+          'Pickle'
+        ],
+        'jain': [],
+        'special_note_veg': '',
+        'special_note_non_veg': '',
       },
       'snacks': {
         'name': 'Snacks',
         'icon': 'local_cafe',
-        'start_time': '16:30',
-        'end_time': '18:00',
-        'items': [
-          {
-            'name': 'Samosa',
-            'type': 'veg',
-            'allergens': ['gluten']
-          },
-          {
-            'name': 'Tea/Coffee',
-            'type': 'veg',
-            'allergens': ['dairy']
-          },
-        ],
-        'special_note': '',
+        'start_time': '17:30',
+        'end_time': '18:30',
+        'veg': ['Samosa', 'Chutney', 'Tea', 'Coffee'],
+        'non_veg': ['Samosa', 'Chutney', 'Tea', 'Coffee'],
+        'jain': [],
+        'special_note_veg': '',
+        'special_note_non_veg': '',
       },
       'dinner': {
         'name': 'Dinner',
         'icon': 'dinner_dining',
-        'start_time': '19:30',
-        'end_time': '22:00',
-        'items': [
-          {'name': 'Dal', 'type': 'veg', 'allergens': []},
-          {'name': 'Sabzi', 'type': 'veg', 'allergens': []},
-          {'name': 'Rice', 'type': 'vegan', 'allergens': []},
-          {
-            'name': 'Roti',
-            'type': 'vegan',
-            'allergens': ['gluten']
-          },
+        'start_time': '19:45',
+        'end_time': '22:30',
+        'veg': [
+          'Plain Rice',
+          'Dal',
+          'Sabzi',
+          'Roti',
+          'Curd',
+          'Salad',
+          'Pickle'
         ],
-        'special_note': '',
+        'non_veg': [
+          'Plain Rice',
+          'Dal',
+          'Sabzi',
+          'Roti',
+          'Curd',
+          'Salad',
+          'Pickle'
+        ],
+        'jain': [],
+        'special_note_veg': '',
+        'special_note_non_veg': '',
       },
     };
   }
