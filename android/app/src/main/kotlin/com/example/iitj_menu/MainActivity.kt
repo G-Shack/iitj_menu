@@ -1,4 +1,4 @@
-package com.example.iitj_menu
+package com.appier.iitjmenu
 
 import io.flutter.embedding.android.FlutterActivity
 
