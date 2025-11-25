@@ -10,10 +10,10 @@ class CurrentMealIndicator extends StatefulWidget {
   final Meal? nextMeal;
 
   const CurrentMealIndicator({
-    Key? key,
+    super.key,
     this.currentMeal,
     this.nextMeal,
-  }) : super(key: key);
+  });
 
   @override
   State<CurrentMealIndicator> createState() => _CurrentMealIndicatorState();

@@ -11,11 +11,11 @@ class MealCard extends StatefulWidget {
   final VoidCallback? onTap;
 
   const MealCard({
-    Key? key,
+    super.key,
     required this.meal,
     required this.state,
     this.onTap,
-  }) : super(key: key);
+  });
 
   @override
   State<MealCard> createState() => _MealCardState();

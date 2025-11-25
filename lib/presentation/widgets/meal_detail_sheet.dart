@@ -10,9 +10,9 @@ class MealDetailSheet extends StatelessWidget {
   final Meal meal;
 
   const MealDetailSheet({
-    Key? key,
+    super.key,
     required this.meal,
-  }) : super(key: key);
+  });
 
   Color _getMealColor() {
     switch (meal.name.toLowerCase()) {

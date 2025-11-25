@@ -11,12 +11,12 @@ class HeaderSection extends StatelessWidget {
   final bool isDarkMode;
 
   const HeaderSection({
-    Key? key,
+    super.key,
     required this.onDaySelected,
     required this.selectedDay,
     required this.onThemeToggle,
     required this.isDarkMode,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -104,10 +104,10 @@ class WeekDaySelector extends StatelessWidget {
   final Function(int) onDaySelected;
 
   const WeekDaySelector({
-    Key? key,
+    super.key,
     required this.selectedDay,
     required this.onDaySelected,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {

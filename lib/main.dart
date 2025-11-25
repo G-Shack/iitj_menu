@@ -50,7 +50,7 @@ void main() async {
 }
 
 class IITJMenuApp extends StatelessWidget {
-  const IITJMenuApp({Key? key}) : super(key: key);
+  const IITJMenuApp({super.key});
 
   @override
   Widget build(BuildContext context) {

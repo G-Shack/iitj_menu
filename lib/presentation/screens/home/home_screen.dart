@@ -11,7 +11,7 @@ import '../../widgets/meal_detail_sheet.dart';
 import '../../../data/models/meal_model.dart';
 
 class HomeScreen extends StatefulWidget {
-  const HomeScreen({Key? key}) : super(key: key);
+  const HomeScreen({super.key});
 
   @override
   State<HomeScreen> createState() => _HomeScreenState();
