@@ -5,7 +5,6 @@ import '../../../providers/dietary_preference_provider.dart';
 import '../../../core/constants/app_dimensions.dart';
 import '../../../core/constants/app_text_styles.dart';
 import 'widgets/header_section.dart';
-import 'widgets/current_meal_indicator.dart';
 import 'widgets/meal_card.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -24,7 +23,7 @@ class _HomeScreenState extends State<HomeScreen>
   void initState() {
     super.initState();
     _animationController = AnimationController(
-      duration: const Duration(milliseconds: 400),
+      duration: const Duration(milliseconds: 1000),
       vsync: this,
     );
     _animationController.forward();
@@ -46,38 +45,42 @@ class _HomeScreenState extends State<HomeScreen>
 
   @override
   Widget build(BuildContext context) {
+    final topPadding = MediaQuery.of(context).padding.top;
+
     return Scaffold(
       body: RefreshIndicator(
         onRefresh: () async {
           await context.read<MenuProvider>().refresh();
         },
+        edgeOffset: 160 + topPadding, // Offset for the header height
         child: CustomScrollView(
           slivers: [
-            // Header
-            SliverToBoxAdapter(
-              child: HeaderSection(
-                onDaySelected: _onDaySelected,
-                selectedDay: _selectedDay,
-                onDietaryToggle: () {
-                  context.read<DietaryPreferenceProvider>().togglePreference();
-                },
-                isVeg: context.watch<DietaryPreferenceProvider>().isVeg,
-              ),
-            ),
+            // Combined Header
+            Consumer<MenuProvider>(
+              builder: (context, menuProvider, _) {
+                final bool isToday = _selectedDay == DateTime.now().weekday - 1;
+                final bool hasMeals = menuProvider.currentMeal != null ||
+                    menuProvider.nextMeal != null;
+                final bool showIndicator = isToday && hasMeals;
 
-            // Current Meal Indicator
-            SliverToBoxAdapter(
-              child: Consumer<MenuProvider>(
-                builder: (context, menuProvider, _) {
-                  if (_selectedDay == DateTime.now().weekday - 1) {
-                    return CurrentMealIndicator(
-                      currentMeal: menuProvider.currentMeal,
-                      nextMeal: menuProvider.nextMeal,
-                    );
-                  }
-                  return const SizedBox.shrink();
-                },
-              ),
+                return SliverPersistentHeader(
+                  pinned: true,
+                  delegate: HomeHeaderDelegate(
+                    onDaySelected: _onDaySelected,
+                    selectedDay: _selectedDay,
+                    onDietaryToggle: () {
+                      context
+                          .read<DietaryPreferenceProvider>()
+                          .togglePreference();
+                    },
+                    isVeg: context.watch<DietaryPreferenceProvider>().isVeg,
+                    topPadding: topPadding,
+                    currentMeal: menuProvider.currentMeal,
+                    nextMeal: menuProvider.nextMeal,
+                    showIndicator: showIndicator,
+                  ),
+                );
+              },
             ),
 
             // Meal Cards
@@ -132,15 +135,18 @@ class _HomeScreenState extends State<HomeScreen>
                     delegate: SliverChildBuilderDelegate(
                       (context, index) {
                         final meal = dayMenu.allMeals[index];
-                        final delay = index * 100;
 
                         return AnimatedBuilder(
                           animation: _animationController,
                           builder: (context, child) {
-                            final animationProgress = Curves.easeOut.transform(
-                              (_animationController.value - (delay / 400))
-                                  .clamp(0.0, 1.0),
-                            );
+                            final double start = (index * 0.1).clamp(0.0, 1.0);
+                            final double end = (start + 0.4).clamp(0.0, 1.0);
+
+                            final animationProgress = Interval(
+                              start,
+                              end,
+                              curve: Curves.easeOut,
+                            ).transform(_animationController.value);
 
                             return Opacity(
                               opacity: animationProgress,

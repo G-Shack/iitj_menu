@@ -103,7 +103,7 @@ class _MealCardState extends State<MealCard>
           BoxShadow(
             color: isActive
                 ? mealColor.withOpacity(0.3)
-                : Colors.black.withOpacity(0.05),
+                : Colors.black.withOpacity(0.1),
             blurRadius: isActive ? 16 : 8,
             offset: const Offset(0, 2),
           ),
@@ -137,7 +137,7 @@ class _MealCardState extends State<MealCard>
                     vertical: 6,
                   ),
                   decoration: BoxDecoration(
-                    color: mealColor.withOpacity(0.15),
+                    color: mealColor.withOpacity(0.2),
                     borderRadius:
                         BorderRadius.circular(AppDimensions.radiusRound),
                   ),
@@ -162,34 +162,42 @@ class _MealCardState extends State<MealCard>
               ],
             ),
 
-            if (items.isNotEmpty) ...[
+            if (items.isNotEmpty ||
+                widget.meal.vegItems.isNotEmpty ||
+                widget.meal.jainItems.isNotEmpty ||
+                widget.meal.nonVegItems.isNotEmpty) ...[
               const SizedBox(height: 16),
 
               // Menu Items
-              Text(
-                'Menu Items:',
-                style: AppTextStyles.label.copyWith(
-                  color: Theme.of(context).textTheme.bodyMedium?.color,
-                ),
-              ),
+              // Text(
+              //   'Menu Items:',
+              //   style: AppTextStyles.label.copyWith(
+              //     color: Theme.of(context).textTheme.bodyMedium?.color,
+              //   ),
+              // ),
 
-              const SizedBox(height: 8),
+              // const SizedBox(height: 8),
 
-              ...items.map((item) => Padding(
+              // For veg mode: show veg items (green) and jain items (black/white)
+              if (widget.isVeg) ...[
+                if (widget.meal.vegItems.isNotEmpty)
+                  Padding(
                     padding: const EdgeInsets.only(bottom: 6),
                     child: Row(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          '• ',
+                          '• Veg: ',
                           style: AppTextStyles.body.copyWith(
-                            color:
-                                Theme.of(context).textTheme.bodyMedium?.color,
+                            color: AppColors.veg,
+                            fontWeight: FontWeight.bold,
                           ),
                         ),
                         Expanded(
                           child: Text(
-                            item.name,
+                            widget.meal.vegItems
+                                .map((item) => item.name)
+                                .join(', '),
                             style: AppTextStyles.body.copyWith(
                               color:
                                   Theme.of(context).textTheme.bodyMedium?.color,
@@ -198,7 +206,65 @@ class _MealCardState extends State<MealCard>
                         ),
                       ],
                     ),
-                  )),
+                  ),
+                if (widget.meal.jainItems.isNotEmpty)
+                  Padding(
+                    padding: const EdgeInsets.only(bottom: 6),
+                    child: Row(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          '• Jain: ',
+                          style: AppTextStyles.body.copyWith(
+                            color:
+                                Theme.of(context).textTheme.bodyMedium?.color,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                        Expanded(
+                          child: Text(
+                            widget.meal.jainItems
+                                .map((item) => item.name)
+                                .join(', '),
+                            style: AppTextStyles.body.copyWith(
+                              color:
+                                  Theme.of(context).textTheme.bodyMedium?.color,
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+              ] else ...[
+                // For non-veg mode: show only non-veg items (red)
+                if (widget.meal.nonVegItems.isNotEmpty)
+                  Padding(
+                    padding: const EdgeInsets.only(bottom: 6),
+                    child: Row(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          '• ',
+                          style: AppTextStyles.body.copyWith(
+                            color: AppColors.nonVeg,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                        Expanded(
+                          child: Text(
+                            widget.meal.nonVegItems
+                                .map((item) => item.name)
+                                .join(', '),
+                            style: AppTextStyles.body.copyWith(
+                              color:
+                                  Theme.of(context).textTheme.bodyMedium?.color,
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+              ],
             ],
 
             if (specialNote != null && specialNote.isNotEmpty) ...[
@@ -206,7 +272,7 @@ class _MealCardState extends State<MealCard>
               Container(
                 padding: const EdgeInsets.all(8),
                 decoration: BoxDecoration(
-                  color: AppColors.warning.withOpacity(0.1),
+                  color: AppColors.warning.withOpacity(0.2),
                   borderRadius:
                       BorderRadius.circular(AppDimensions.radiusSmall),
                 ),
@@ -239,14 +305,8 @@ class _MealCardState extends State<MealCard>
     // Apply opacity for past meals
     if (isPast) {
       card = Opacity(
-        opacity: 0.6,
-        child: ColorFiltered(
-          colorFilter: ColorFilter.mode(
-            Colors.grey.withOpacity(0.2),
-            BlendMode.saturation,
-          ),
-          child: card,
-        ),
+        opacity: 0.7,
+        child: card,
       );
     }
 
