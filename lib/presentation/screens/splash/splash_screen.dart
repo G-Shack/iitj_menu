@@ -10,8 +10,9 @@ class SplashScreen extends StatefulWidget {
 }
 
 class _SplashScreenState extends State<SplashScreen>
-    with SingleTickerProviderStateMixin {
+    with TickerProviderStateMixin {
   late AnimationController _controller;
+  late AnimationController _bgController;
   late Animation<double> _logoFadeAnimation;
   late Animation<double> _logoScaleAnimation;
   late Animation<double> _taglineFadeAnimation;
@@ -27,6 +28,11 @@ class _SplashScreenState extends State<SplashScreen>
   void _setupAnimations() {
     _controller = AnimationController(
       duration: const Duration(milliseconds: 1500),
+      vsync: this,
+    );
+
+    _bgController = AnimationController(
+      duration: const Duration(seconds: 10),
       vsync: this,
     );
 
@@ -62,6 +68,7 @@ class _SplashScreenState extends State<SplashScreen>
     );
 
     _controller.forward();
+    _bgController.repeat();
   }
 
   Future<void> _navigateToHome() async {
@@ -74,92 +81,128 @@ class _SplashScreenState extends State<SplashScreen>
   @override
   void dispose() {
     _controller.dispose();
+    _bgController.dispose();
     super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
+    final screenHeight = MediaQuery.of(context).size.height;
+    final screenWidth = MediaQuery.of(context).size.width;
+    // Calculate width based on 1920x1080 aspect ratio maintaining height
+    final bgImageWidth = screenHeight * (1920 / 1080);
+
     return Scaffold(
-      body: Container(
-        decoration: const BoxDecoration(
-          gradient: LinearGradient(
-            begin: Alignment.topLeft,
-            end: Alignment.bottomRight,
-            colors: [AppColors.primary, AppColors.primaryDark],
+      body: Stack(
+        children: [
+          // Gradient Background
+          Container(
+            decoration: const BoxDecoration(
+              gradient: LinearGradient(
+                begin: Alignment.topLeft,
+                end: Alignment.bottomRight,
+                colors: [AppColors.primary, AppColors.primaryDark],
+              ),
+            ),
           ),
-        ),
-        child: Center(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              // Logo
-              AnimatedBuilder(
-                animation: _controller,
-                builder: (context, child) {
-                  return Opacity(
-                    opacity: _logoFadeAnimation.value,
-                    child: Transform.scale(
-                      scale: _logoScaleAnimation.value,
-                      child: child,
+
+          // Background Animation
+          AnimatedBuilder(
+            animation: _bgController,
+            builder: (context, child) {
+              // Animate from left to right (showing leftmost part to rightmost part)
+              final maxOffset = bgImageWidth - screenWidth;
+              // Use a linear motion or curve as preferred.
+              // Using linear for continuous panning feel.
+              final offset = maxOffset * _bgController.value;
+
+              return Positioned(
+                left: -offset,
+                top: 0,
+                bottom: 0,
+                width: bgImageWidth,
+                child: Image.asset(
+                  'assets/images/bottom_animation.png',
+                  fit: BoxFit.fitHeight,
+                ),
+              );
+            },
+          ),
+
+          // Content
+          Center(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                // Logo
+                AnimatedBuilder(
+                  animation: _controller,
+                  builder: (context, child) {
+                    return Opacity(
+                      opacity: _logoFadeAnimation.value,
+                      child: Transform.scale(
+                        scale: _logoScaleAnimation.value,
+                        child: child,
+                      ),
+                    );
+                  },
+                  child: Container(
+                    width: 150,
+                    height: 150,
+                    decoration: BoxDecoration(
+                      // color: Colors.white.withOpacity(0.2),
+                      borderRadius: BorderRadius.circular(24),
                     ),
-                  );
-                },
-                child: Container(
-                  width: 120,
-                  height: 120,
-                  decoration: BoxDecoration(
-                    color: Colors.white.withOpacity(0.2),
-                    borderRadius: BorderRadius.circular(24),
-                  ),
-                  child: const Icon(
-                    Icons.restaurant_menu,
-                    size: 64,
-                    color: Colors.white,
+                    // padding: const EdgeInsets.all(16),
+                    child: Image.asset(
+                      'assets/images/SplashScreenImage.png',
+                      fit: BoxFit.contain,
+                    ),
                   ),
                 ),
-              ),
 
-              const SizedBox(height: 32),
+                const SizedBox(height: 32),
 
-              // Tagline
-              AnimatedBuilder(
-                animation: _taglineFadeAnimation,
-                builder: (context, child) {
-                  return Opacity(
-                    opacity: _taglineFadeAnimation.value,
-                    child: child,
-                  );
-                },
-                child: Text(
-                  'Made with love for IITJ Community',
-                  style: AppTextStyles.bodyLarge.copyWith(
-                    color: Colors.white,
-                  ),
-                  textAlign: TextAlign.center,
-                ),
-              ),
-
-              const SizedBox(height: 8),
-
-              // Developer Credit
-              AnimatedBuilder(
-                animation: _creditFadeAnimation,
-                builder: (context, child) {
-                  return Opacity(
-                    opacity: _creditFadeAnimation.value,
-                    child: child,
-                  );
-                },
-                child: Text(
-                  '- Om Tathed',
-                  style: AppTextStyles.body.copyWith(
-                    color: Colors.white,
+                // Tagline
+                AnimatedBuilder(
+                  animation: _taglineFadeAnimation,
+                  builder: (context, child) {
+                    return Opacity(
+                      opacity: _taglineFadeAnimation.value,
+                      child: child,
+                    );
+                  },
+                  child: Text(
+                    'Made with ❤️ for IITJ Community',
+                    style: AppTextStyles.bodyLarge.copyWith(
+                      color: Colors.white,
+                    ),
+                    textAlign: TextAlign.center,
                   ),
                 ),
-              ),
-            ],
+
+                const SizedBox(height: 8),
+
+                // Developer Credit
+                AnimatedBuilder(
+                  animation: _creditFadeAnimation,
+                  builder: (context, child) {
+                    return Opacity(
+                      opacity: _creditFadeAnimation.value,
+                      child: child,
+                    );
+                  },
+                  child: Text(
+                    '- Om Tathed',
+                    style: AppTextStyles.body.copyWith(
+                      color: Colors.white,
+                    ),
+                  ),
+                ),
+              ],
+            ),
           ),
-        ),
+        ],
       ),
     );
   }
