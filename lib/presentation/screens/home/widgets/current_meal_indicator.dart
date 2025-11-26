@@ -128,128 +128,146 @@ class _CurrentMealIndicatorState extends State<CurrentMealIndicator> {
     final isActive = widget.currentMeal != null;
     final mealColor = _getMealColor(meal);
 
+    final isDark = Theme.of(context).brightness == Brightness.dark;
+
     return Container(
       margin: const EdgeInsets.symmetric(
         horizontal: AppDimensions.md,
         vertical: AppDimensions.sm,
       ),
+      clipBehavior: Clip.hardEdge,
       decoration: BoxDecoration(
         color: Theme.of(context).cardColor,
         borderRadius: BorderRadius.circular(AppDimensions.radiusLarge),
         boxShadow: [
           BoxShadow(
-            color: Colors.black.withOpacity(0.08),
+            color: isDark
+                ? Colors.black.withOpacity(0.2)
+                : AppColors.primary.withOpacity(0.08),
             blurRadius: 16,
             offset: const Offset(0, 4),
           ),
         ],
-        border: Border(
-          left: BorderSide(
-            color: mealColor,
-            width: 4,
-          ),
-        ),
+        border: isDark ? Border.all(color: AppColors.darkBorder) : null,
       ),
-      child: Padding(
-        padding: const EdgeInsets.all(AppDimensions.md),
-        child: Row(
-          children: [
-            // Icon with animation for active meal
-            if (isActive)
-              TweenAnimationBuilder<double>(
-                tween: Tween(begin: 0.0, end: 1.0),
-                duration: const Duration(milliseconds: 600),
-                curve: Curves.elasticOut,
-                builder: (context, value, child) {
-                  return Transform.scale(
-                    scale: 0.8 + (value * 0.2),
-                    child: child,
-                  );
-                },
-                child: Icon(
-                  _getMealIcon(meal),
-                  size: AppDimensions.iconLarge,
-                  color: mealColor,
-                ),
-              )
-            else
-              Icon(
-                _getMealIcon(meal),
-                size: AppDimensions.iconLarge,
-                color: mealColor,
-              ),
+      child: Stack(
+        children: [
+          // Left colored strip
+          Positioned(
+            left: 0,
+            top: 0,
+            bottom: 0,
+            width: 4,
+            child: Container(color: mealColor),
+          ),
+          // Content
+          Padding(
+            padding: const EdgeInsets.fromLTRB(
+              AppDimensions.md + 4, // Add strip width to padding
+              AppDimensions.md,
+              AppDimensions.md,
+              AppDimensions.md,
+            ),
+            child: Row(
+              children: [
+                // Icon with animation for active meal
+                if (isActive)
+                  TweenAnimationBuilder<double>(
+                    tween: Tween(begin: 0.0, end: 1.0),
+                    duration: const Duration(milliseconds: 600),
+                    curve: Curves.elasticOut,
+                    builder: (context, value, child) {
+                      return Transform.scale(
+                        scale: 0.8 + (value * 0.2),
+                        child: child,
+                      );
+                    },
+                    child: Icon(
+                      _getMealIcon(meal),
+                      size: AppDimensions.iconLarge,
+                      color: mealColor,
+                    ),
+                  )
+                else
+                  Icon(
+                    _getMealIcon(meal),
+                    size: AppDimensions.iconLarge,
+                    color: mealColor,
+                  ),
 
-            const SizedBox(width: 12),
+                const SizedBox(width: 12),
 
-            // Meal info
-            Expanded(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Row(
+                // Meal info
+                Expanded(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text(
-                        meal.name.toUpperCase(),
-                        style: AppTextStyles.label.copyWith(
-                          color: mealColor,
-                          fontWeight: FontWeight.w600,
-                        ),
-                      ),
-                      if (isActive) ...[
-                        const SizedBox(width: 8),
-                        Container(
-                          padding: const EdgeInsets.symmetric(
-                            horizontal: 8,
-                            vertical: 2,
-                          ),
-                          decoration: BoxDecoration(
-                            color: mealColor.withOpacity(0.2),
-                            borderRadius: BorderRadius.circular(
-                                AppDimensions.radiusSmall),
-                          ),
-                          child: Text(
-                            'ACTIVE',
-                            style: AppTextStyles.caption.copyWith(
+                      Row(
+                        children: [
+                          Text(
+                            meal.name.toUpperCase(),
+                            style: AppTextStyles.label.copyWith(
                               color: mealColor,
                               fontWeight: FontWeight.w600,
                             ),
                           ),
+                          if (isActive) ...[
+                            const SizedBox(width: 8),
+                            Container(
+                              padding: const EdgeInsets.symmetric(
+                                horizontal: 8,
+                                vertical: 2,
+                              ),
+                              decoration: BoxDecoration(
+                                color: mealColor.withOpacity(0.2),
+                                borderRadius: BorderRadius.circular(
+                                    AppDimensions.radiusSmall),
+                              ),
+                              child: Text(
+                                'ACTIVE',
+                                style: AppTextStyles.caption.copyWith(
+                                  color: mealColor,
+                                  fontWeight: FontWeight.w600,
+                                ),
+                              ),
+                            ),
+                          ],
+                        ],
+                      ),
+                      const SizedBox(height: 4),
+                      Text(
+                        '${meal.startTime.format(context)} - ${meal.endTime.format(context)}',
+                        style: AppTextStyles.body.copyWith(
+                          color: Theme.of(context).textTheme.bodyMedium?.color,
                         ),
-                      ],
+                      ),
                     ],
                   ),
-                  const SizedBox(height: 4),
-                  Text(
-                    '${meal.startTime.format(context)} - ${meal.endTime.format(context)}',
-                    style: AppTextStyles.body.copyWith(
-                      color: Theme.of(context).textTheme.bodyMedium?.color,
-                    ),
-                  ),
-                ],
-              ),
-            ),
+                ),
 
-            // Time remaining
-            if (_timeRemaining.isNotEmpty)
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.end,
-                children: [
-                  Icon(
-                    Icons.access_time,
-                    size: AppDimensions.iconSmall,
-                    color: Theme.of(context).textTheme.bodySmall?.color,
+                // Time remaining
+                if (_timeRemaining.isNotEmpty)
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.end,
+                    children: [
+                      Icon(
+                        Icons.access_time,
+                        size: AppDimensions.iconSmall,
+                        color: Theme.of(context).textTheme.bodySmall?.color,
+                      ),
+                      const SizedBox(height: 4),
+                      Text(
+                        _timeRemaining,
+                        style: AppTextStyles.caption.copyWith(
+                          color: Theme.of(context).textTheme.bodySmall?.color,
+                        ),
+                      ),
+                    ],
                   ),
-                  const SizedBox(height: 4),
-                  Text(
-                    _timeRemaining,
-                    style: AppTextStyles.caption.copyWith(
-                      color: Theme.of(context).textTheme.bodySmall?.color,
-                    ),
-                  ),
-                ],
-              ),
-          ],
-        ),
+              ],
+            ),
+          ),
+        ],
       ),
     );
   }

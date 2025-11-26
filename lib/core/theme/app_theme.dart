@@ -72,8 +72,10 @@ class AppTheme {
         elevation: 0,
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(AppDimensions.radiusLarge),
+          side: const BorderSide(color: AppColors.lightBorder, width: 1),
         ),
         color: AppColors.lightSurface,
+        shadowColor: AppColors.primary.withOpacity(0.1),
       ),
     );
   }
@@ -81,6 +83,7 @@ class AppTheme {
   static ThemeData darkTheme() {
     return ThemeData(
       useMaterial3: true,
+      brightness: Brightness.dark,
       colorScheme: const ColorScheme.dark(
         primary: AppColors.primaryLight,
         secondary: AppColors.secondaryLight,
@@ -91,7 +94,7 @@ class AppTheme {
         onSurface: AppColors.darkTextPrimary,
         onError: Colors.white,
       ),
-      scaffoldBackgroundColor: AppColors.darkBackgroundSecondary,
+      scaffoldBackgroundColor: AppColors.darkBackground,
       cardColor: AppColors.darkSurface,
       dividerColor: AppColors.darkBorder,
       textTheme: TextTheme(
@@ -145,6 +148,7 @@ class AppTheme {
         elevation: 0,
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(AppDimensions.radiusLarge),
+          side: const BorderSide(color: AppColors.darkBorder, width: 1),
         ),
         color: AppColors.darkSurface,
       ),

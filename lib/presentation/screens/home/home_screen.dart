@@ -55,32 +55,23 @@ class _HomeScreenState extends State<HomeScreen>
         edgeOffset: 160 + topPadding, // Offset for the header height
         child: CustomScrollView(
           slivers: [
-            // Combined Header
-            Consumer<MenuProvider>(
-              builder: (context, menuProvider, _) {
-                final bool isToday = _selectedDay == DateTime.now().weekday - 1;
-                final bool hasMeals = menuProvider.currentMeal != null ||
-                    menuProvider.nextMeal != null;
-                final bool showIndicator = isToday && hasMeals;
-
-                return SliverPersistentHeader(
-                  pinned: true,
-                  delegate: HomeHeaderDelegate(
-                    onDaySelected: _onDaySelected,
-                    selectedDay: _selectedDay,
-                    onDietaryToggle: () {
-                      context
-                          .read<DietaryPreferenceProvider>()
-                          .togglePreference();
-                    },
-                    isVeg: context.watch<DietaryPreferenceProvider>().isVeg,
-                    topPadding: topPadding,
-                    currentMeal: menuProvider.currentMeal,
-                    nextMeal: menuProvider.nextMeal,
-                    showIndicator: showIndicator,
-                  ),
-                );
-              },
+            // Sticky Header & Indicator
+            SliverPersistentHeader(
+              pinned: true,
+              delegate: HomeStickyHeaderDelegate(
+                onDaySelected: _onDaySelected,
+                selectedDay: _selectedDay,
+                onDietaryToggle: () {
+                  context.read<DietaryPreferenceProvider>().togglePreference();
+                },
+                isVeg: context.watch<DietaryPreferenceProvider>().isVeg,
+                topPadding: topPadding,
+                currentMeal: context.watch<MenuProvider>().currentMeal,
+                nextMeal: context.watch<MenuProvider>().nextMeal,
+                showIndicator: (_selectedDay == DateTime.now().weekday - 1) &&
+                    (context.watch<MenuProvider>().currentMeal != null ||
+                        context.watch<MenuProvider>().nextMeal != null),
+              ),
             ),
 
             // Meal Cards

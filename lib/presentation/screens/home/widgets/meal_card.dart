@@ -93,19 +93,28 @@ class _MealCardState extends State<MealCard>
     final items = widget.meal.getItems(widget.isVeg);
     final specialNote = widget.meal.getSpecialNote(widget.isVeg);
 
+    final isDark = Theme.of(context).brightness == Brightness.dark;
+
     Widget card = Container(
       margin: const EdgeInsets.only(bottom: AppDimensions.md),
       decoration: BoxDecoration(
         color: Theme.of(context).cardColor,
         borderRadius: BorderRadius.circular(AppDimensions.radiusLarge),
-        border: isActive ? Border.all(color: mealColor, width: 2) : null,
+        border: isActive
+            ? Border.all(color: mealColor, width: 2)
+            : Border.all(
+                color: Theme.of(context).dividerColor.withOpacity(0.5),
+                width: 1,
+              ),
         boxShadow: [
           BoxShadow(
             color: isActive
-                ? mealColor.withOpacity(0.3)
-                : Colors.black.withOpacity(0.1),
-            blurRadius: isActive ? 16 : 8,
-            offset: const Offset(0, 2),
+                ? mealColor.withOpacity(isDark ? 0.15 : 0.25)
+                : (isDark
+                    ? Colors.black.withOpacity(0.2)
+                    : AppColors.primary.withOpacity(0.05)),
+            blurRadius: isActive ? 16 : 12,
+            offset: const Offset(0, 4),
           ),
         ],
       ),
