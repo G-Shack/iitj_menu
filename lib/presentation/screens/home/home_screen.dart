@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../../../providers/menu_provider.dart';
 import '../../../providers/dietary_preference_provider.dart';
+import '../../../data/models/meal_model.dart';
 import '../../../core/constants/app_dimensions.dart';
 import '../../../core/constants/app_text_styles.dart';
 import 'widgets/header_section.dart';
@@ -41,6 +42,18 @@ class _HomeScreenState extends State<HomeScreen>
       _animationController.reset();
       _animationController.forward();
     });
+  }
+
+  MealState _getMealState(Meal meal) {
+    final currentDay = DateTime.now().weekday - 1;
+
+    if (_selectedDay < currentDay) {
+      return MealState.past;
+    } else if (_selectedDay > currentDay) {
+      return MealState.upcoming;
+    } else {
+      return meal.state;
+    }
   }
 
   @override
@@ -151,7 +164,7 @@ class _HomeScreenState extends State<HomeScreen>
                             builder: (context, dietaryProvider, _) {
                               return MealCard(
                                 meal: meal,
-                                state: meal.state,
+                                state: _getMealState(meal),
                                 isVeg: dietaryProvider.isVeg,
                               );
                             },
