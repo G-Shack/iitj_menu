@@ -74,21 +74,44 @@ class Meal extends Equatable {
       icon: json['icon'] as String? ?? 'restaurant_menu',
       startTime: _parseTime(json['start_time'] as String),
       endTime: _parseTime(json['end_time'] as String),
-      vegItems: (json['veg'] as List<dynamic>?)
-              ?.map((item) => MenuItem(name: item as String))
-              .toList() ??
-          [],
-      nonVegItems: (json['non_veg'] as List<dynamic>?)
-              ?.map((item) => MenuItem(name: item as String))
-              .toList() ??
-          [],
-      jainItems: (json['jain'] as List<dynamic>?)
-              ?.map((item) => MenuItem(name: item as String))
-              .toList() ??
-          [],
+      vegItems: _parseMenuItems(json['veg']),
+      nonVegItems: _parseMenuItems(json['non_veg']),
+      jainItems: _parseMenuItems(json['jain']),
       specialNoteVeg: json['special_note_veg'] as String?,
       specialNoteNonVeg: json['special_note_non_veg'] as String?,
     );
+  }
+
+  /// Parses menu items from either:
+  /// - A List of strings: ["Item 1", "Item 2", "Item 3"]
+  /// - A single comma-separated string: "Item 1, Item 2, Item 3"
+  static List<MenuItem> _parseMenuItems(dynamic data) {
+    if (data == null) return [];
+
+    List<String> items = [];
+
+    if (data is List) {
+      // Check if it's a list with a single comma-separated string
+      if (data.length == 1 && data[0] is String && data[0].contains(',')) {
+        items = (data[0] as String)
+            .split(',')
+            .map((s) => s.trim())
+            .where((s) => s.isNotEmpty)
+            .toList();
+      } else {
+        // Normal list of items
+        items = data.map((item) => item.toString().trim()).toList();
+      }
+    } else if (data is String) {
+      // Single comma-separated string
+      items = data
+          .split(',')
+          .map((s) => s.trim())
+          .where((s) => s.isNotEmpty)
+          .toList();
+    }
+
+    return items.map((item) => MenuItem(name: item)).toList();
   }
 
   Map<String, dynamic> toJson() {
