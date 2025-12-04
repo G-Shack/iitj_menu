@@ -7,10 +7,12 @@ import 'firebase_options.dart';
 import 'core/theme/app_theme.dart';
 import 'providers/dietary_preference_provider.dart';
 import 'providers/menu_provider.dart';
+import 'providers/app_config_provider.dart';
 import 'data/services/remote_config_service.dart';
 import 'data/services/cache_service.dart';
 import 'presentation/screens/splash/splash_screen.dart';
 import 'presentation/screens/home/home_screen.dart';
+import 'presentation/screens/hub/hub_screen.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -43,6 +45,9 @@ void main() async {
           create: (_) =>
               MenuProvider(remoteConfigService, cacheService)..initialize(),
         ),
+        ChangeNotifierProvider(
+          create: (_) => AppConfigProvider(remoteConfigService)..initialize(),
+        ),
       ],
       child: const IITJMenuApp(),
     ),
@@ -63,6 +68,7 @@ class IITJMenuApp extends StatelessWidget {
       initialRoute: '/',
       routes: {
         '/': (context) => const SplashScreen(),
+        '/hub': (context) => const HubScreen(),
         '/home': (context) => const HomeScreen(),
       },
     );

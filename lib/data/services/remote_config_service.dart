@@ -1,11 +1,13 @@
 import 'dart:convert';
 import 'package:firebase_remote_config/firebase_remote_config.dart';
 import '../models/day_menu_model.dart';
+import '../models/app_config_model.dart';
 
 class RemoteConfigService {
   final FirebaseRemoteConfig _remoteConfig;
   static const String _weeklyMenuKey = 'weekly_menu';
   static const String _menuVersionKey = 'menu_version';
+  static const String _appConfigKey = 'app_config';
 
   RemoteConfigService(this._remoteConfig);
 
@@ -13,7 +15,10 @@ class RemoteConfigService {
     await _remoteConfig.setConfigSettings(
       RemoteConfigSettings(
         fetchTimeout: const Duration(seconds: 30),
+        // For development: set to 0 to always fetch fresh values
+        // Change back to Duration(hours: 1) for production!
         minimumFetchInterval: const Duration(hours: 1),
+        // minimumFetchInterval: Duration.zero,
       ),
     );
 
@@ -21,19 +26,46 @@ class RemoteConfigService {
     await _remoteConfig.setDefaults({
       _weeklyMenuKey: _getDefaultMenu(),
       _menuVersionKey: '1.0.0',
+      _appConfigKey: _getDefaultAppConfig(),
     });
+
+    print(
+        '🔥 Remote Config initialized with minimumFetchInterval: 0 (dev mode)');
   }
 
   Future<bool> fetchAndActivate() async {
     try {
-      return await _remoteConfig.fetchAndActivate();
+      final result = await _remoteConfig.fetchAndActivate();
+      print('🔥 Remote Config fetchAndActivate result: $result');
+      print('🔥 Last fetch status: ${_remoteConfig.lastFetchStatus}');
+      print('🔥 Last fetch time: ${_remoteConfig.lastFetchTime}');
+      return result;
     } catch (e) {
-      print('Error fetching remote config: $e');
+      print('❌ Error fetching remote config: $e');
       return false;
     }
   }
 
   String get menuVersion => _remoteConfig.getString(_menuVersionKey);
+
+  AppConfigModel getAppConfig() {
+    try {
+      final jsonString = _remoteConfig.getString(_appConfigKey);
+      print('🔥 ===== APP CONFIG DEBUG =====');
+      print('🔥 Raw app_config JSON: $jsonString');
+      print('🔥 JSON length: ${jsonString.length}');
+      final configData = json.decode(jsonString) as Map<String, dynamic>;
+      print(
+          '🔥 Parsed show_options_screen: ${configData['show_options_screen']}');
+      print(
+          '🔥 Parsed events count: ${(configData['events'] as List?)?.length ?? 0}');
+      print('🔥 =============================');
+      return AppConfigModel.fromJson(configData);
+    } catch (e) {
+      print('❌ Error parsing app config: $e');
+      return const AppConfigModel();
+    }
+  }
 
   Map<String, DayMenu> getWeeklyMenu() {
     try {
@@ -166,5 +198,39 @@ class RemoteConfigService {
         'special_note_non_veg': '',
       },
     };
+  }
+
+  String _getDefaultAppConfig() {
+    return json.encode({
+      'show_options_screen': true,
+      'more_screen_message': 'No updates currently',
+      'timetable_message': 'Coming Soon',
+      'events': [
+        {
+          'name': 'Tech Fest 2025',
+          'venue': 'Lecture Hall Complex',
+          'time': 'Dec 15, 2025 - 10:00 AM',
+          'status': 'upcoming'
+        },
+        {
+          'name': 'Cultural Night',
+          'venue': 'Central Auditorium',
+          'time': 'Dec 20, 2025 - 6:00 PM',
+          'status': 'upcoming'
+        },
+        {
+          'name': 'Hackathon 2024',
+          'venue': 'Computer Center',
+          'time': 'Nov 10, 2024 - 9:00 AM',
+          'status': 'completed'
+        },
+        {
+          'name': 'Sports Meet',
+          'venue': 'Stadium',
+          'time': 'Nov 25, 2024 - 8:00 AM',
+          'status': 'cancelled'
+        }
+      ],
+    });
   }
 }

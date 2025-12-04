@@ -966,5 +966,36 @@
                 "special_note_non_veg": ""
             }
         }
+    },
+    "app_config": {
+        "show_options_screen": true,
+        "more_screen_message": "No updates currently",
+        "timetable_message": "Coming Soon",
+        "events": [
+            {
+                "name": "Tech Fest 2025",
+                "venue": "Lecture Hall Complex",
+                "time": "Dec 15, 2025 - 10:00 AM",
+                "status": "upcoming"
+            },
+            {
+                "name": "Cultural Night",
+                "venue": "Central Auditorium",
+                "time": "Dec 20, 2025 - 6:00 PM",
+                "status": "upcoming"
+            },
+            {
+                "name": "Hackathon 2024",
+                "venue": "Computer Center",
+                "time": "Nov 10, 2024 - 9:00 AM",
+                "status": "completed"
+            },
+            {
+                "name": "Sports Meet",
+                "venue": "Stadium",
+                "time": "Nov 25, 2024 - 8:00 AM",
+                "status": "cancelled"
+            }
+        ]
     }
 }
