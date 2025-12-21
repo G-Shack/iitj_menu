@@ -84,10 +84,21 @@ class MenuProvider extends ChangeNotifier {
     notifyListeners();
 
     try {
-      await _remoteConfigService.initialize();
+      // Remote config should already be initialized in main.dart
+      // Try to fetch latest (will use cache if within interval)
       await _remoteConfigService.fetchAndActivate();
 
       _weeklyMenu = _remoteConfigService.getWeeklyMenu();
+
+      // Check if menu data was actually fetched
+      if (_weeklyMenu.isEmpty) {
+        _error =
+            'Unable to load menu. Please check your internet connection and try again.';
+        _isLoading = false;
+        notifyListeners();
+        return;
+      }
+
       _lastUpdated = DateTime.now();
 
       // Cache the menu
@@ -99,7 +110,9 @@ class MenuProvider extends ChangeNotifier {
       _isLoading = false;
       notifyListeners();
     } catch (e) {
-      _error = 'Failed to fetch menu: $e';
+      print('❌ Error in fetchMenu: $e');
+      _error =
+          'Unable to load menu. Please check your internet connection and try again.';
       _isLoading = false;
       notifyListeners();
 
@@ -108,6 +121,7 @@ class MenuProvider extends ChangeNotifier {
       if (cachedMenu != null) {
         _weeklyMenu = cachedMenu;
         _lastUpdated = _cacheService.getLastUpdated();
+        _error = null; // Clear error if cache is available
         notifyListeners();
       }
     }

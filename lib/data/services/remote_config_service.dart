@@ -9,16 +9,22 @@ class RemoteConfigService {
   static const String _menuVersionKey = 'menu_version';
   static const String _appConfigKey = 'app_config';
 
+  bool _isInitialized = false;
+
   RemoteConfigService(this._remoteConfig);
 
   Future<void> initialize() async {
+    // Prevent multiple initializations
+    if (_isInitialized) {
+      print('🔥 Remote Config already initialized, skipping...');
+      return;
+    }
+
     await _remoteConfig.setConfigSettings(
       RemoteConfigSettings(
         fetchTimeout: const Duration(seconds: 30),
-        // For development: set to 0 to always fetch fresh values
-        // Change back to Duration(hours: 1) for production!
+        // For production: use 1 hour interval
         minimumFetchInterval: const Duration(hours: 1),
-        // minimumFetchInterval: Duration.zero,
       ),
     );
 
@@ -29,20 +35,31 @@ class RemoteConfigService {
       _appConfigKey: _getDefaultAppConfig(),
     });
 
-    print(
-        '🔥 Remote Config initialized with minimumFetchInterval: 0 (dev mode)');
+    _isInitialized = true;
+    print('🔥 Remote Config initialized');
   }
 
   Future<bool> fetchAndActivate() async {
     try {
+      // Ensure initialized before fetching
+      if (!_isInitialized) {
+        await initialize();
+      }
+
       final result = await _remoteConfig.fetchAndActivate();
       print('🔥 Remote Config fetchAndActivate result: $result');
       print('🔥 Last fetch status: ${_remoteConfig.lastFetchStatus}');
       print('🔥 Last fetch time: ${_remoteConfig.lastFetchTime}');
+
+      // Check if we actually got data from server
+      if (_remoteConfig.lastFetchStatus != RemoteConfigFetchStatus.success) {
+        print('⚠️ Remote Config fetch was not successful');
+      }
+
       return result;
     } catch (e) {
       print('❌ Error fetching remote config: $e');
-      return false;
+      rethrow; // Rethrow to let providers handle the error
     }
   }
 
@@ -88,149 +105,17 @@ class RemoteConfigService {
   }
 
   String _getDefaultMenu() {
-    // Default menu in case Firebase is unavailable
-    return json.encode({
-      'monday': _getDefaultDayMenu(),
-      'tuesday': _getDefaultDayMenu(),
-      'wednesday': _getDefaultDayMenu(),
-      'thursday': _getDefaultDayMenu(),
-      'friday': _getDefaultDayMenu(),
-      'saturday': _getDefaultDayMenu(),
-      'sunday': _getDefaultDayMenu(),
-    });
-  }
-
-  Map<String, dynamic> _getDefaultDayMenu() {
-    return {
-      'breakfast': {
-        'name': 'Breakfast',
-        'icon': 'sunrise',
-        'start_time': '08:00',
-        'end_time': '10:30',
-        'veg': [
-          'Poha (Aloo/Sev)',
-          'Sambhar',
-          'Banana (2)',
-          'Bread',
-          'Butter',
-          'Milk',
-          'Tea',
-          'Coffee'
-        ],
-        'non_veg': [
-          'Idli & Medu Vada',
-          'Sambhar',
-          'Coconut Chutney',
-          'Boiled egg (2)',
-          'Toasted bread',
-          'Butter',
-          'Milk',
-          'Tea',
-          'Coffee'
-        ],
-        'jain': ['Banana (2)'],
-        'special_note_veg': '',
-        'special_note_non_veg': '',
-      },
-      'lunch': {
-        'name': 'Lunch',
-        'icon': 'restaurant',
-        'start_time': '12:30',
-        'end_time': '15:00',
-        'veg': [
-          'Plain Rice',
-          'Dal',
-          'Sabzi',
-          'Roti',
-          'Curd',
-          'Salad',
-          'Pickle'
-        ],
-        'non_veg': [
-          'Plain Rice',
-          'Dal',
-          'Sabzi',
-          'Roti',
-          'Curd',
-          'Salad',
-          'Pickle'
-        ],
-        'jain': [],
-        'special_note_veg': '',
-        'special_note_non_veg': '',
-      },
-      'snacks': {
-        'name': 'Snacks',
-        'icon': 'local_cafe',
-        'start_time': '17:30',
-        'end_time': '18:30',
-        'veg': ['Samosa', 'Chutney', 'Tea', 'Coffee'],
-        'non_veg': ['Samosa', 'Chutney', 'Tea', 'Coffee'],
-        'jain': [],
-        'special_note_veg': '',
-        'special_note_non_veg': '',
-      },
-      'dinner': {
-        'name': 'Dinner',
-        'icon': 'dinner_dining',
-        'start_time': '19:45',
-        'end_time': '22:30',
-        'veg': [
-          'Plain Rice',
-          'Dal',
-          'Sabzi',
-          'Roti',
-          'Curd',
-          'Salad',
-          'Pickle'
-        ],
-        'non_veg': [
-          'Plain Rice',
-          'Dal',
-          'Sabzi',
-          'Roti',
-          'Curd',
-          'Salad',
-          'Pickle'
-        ],
-        'jain': [],
-        'special_note_veg': '',
-        'special_note_non_veg': '',
-      },
-    };
+    // Return empty menu - don't show default data if remote config fails
+    return json.encode({});
   }
 
   String _getDefaultAppConfig() {
+    // Default config: skip hub screen and show empty data if remote config fails
     return json.encode({
-      'show_options_screen': true,
-      'more_screen_message': 'No updates currently',
-      'timetable_message': 'Coming Soon',
-      'events': [
-        {
-          'name': 'Tech Fest 2025',
-          'venue': 'Lecture Hall Complex',
-          'time': 'Dec 15, 2025 - 10:00 AM',
-          'status': 'upcoming'
-        },
-        {
-          'name': 'Cultural Night',
-          'venue': 'Central Auditorium',
-          'time': 'Dec 20, 2025 - 6:00 PM',
-          'status': 'upcoming'
-        },
-        {
-          'name': 'Hackathon 2024',
-          'venue': 'Computer Center',
-          'time': 'Nov 10, 2024 - 9:00 AM',
-          'status': 'completed'
-        },
-        {
-          'name': 'Sports Meet',
-          'venue': 'Stadium',
-          'time': 'Nov 25, 2024 - 8:00 AM',
-          'status': 'cancelled'
-        }
-      ],
+      'show_options_screen': false,
+      'more_screen_message': 'Unable to load data',
+      'timetable_message': 'Unable to load data',
+      'events': [],
     });
   }
 }

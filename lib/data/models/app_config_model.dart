@@ -7,7 +7,7 @@ class AppConfigModel {
   final String timetableMessage;
 
   const AppConfigModel({
-    this.showOptionsScreen = true,
+    this.showOptionsScreen = false,
     this.events = const [],
     this.moreScreenMessage = 'No updates currently',
     this.timetableMessage = 'Coming Soon',
@@ -15,7 +15,7 @@ class AppConfigModel {
 
   factory AppConfigModel.fromJson(Map<String, dynamic> json) {
     return AppConfigModel(
-      showOptionsScreen: json['show_options_screen'] as bool? ?? true,
+      showOptionsScreen: json['show_options_screen'] as bool? ?? false,
       events: (json['events'] as List<dynamic>?)
               ?.map((e) => EventModel.fromJson(e as Map<String, dynamic>))
               .toList() ??

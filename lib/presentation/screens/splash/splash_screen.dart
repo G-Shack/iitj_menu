@@ -206,7 +206,7 @@ class _SplashScreenState extends State<SplashScreen>
                     );
                   },
                   child: Text(
-                    '- Om Tathed',
+                    '- APPIER',
                     style: AppTextStyles.body.copyWith(
                       color: Colors.white,
                     ),

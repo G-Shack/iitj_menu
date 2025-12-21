@@ -19,11 +19,13 @@ class AppConfigProvider extends ChangeNotifier {
     notifyListeners();
 
     try {
-      await _remoteConfigService.initialize();
-      await _remoteConfigService.fetchAndActivate();
+      // Remote config should already be initialized in main.dart
+      // Just get the config (no need to re-fetch)
       _config = _remoteConfigService.getAppConfig();
+      print(
+          '✅ AppConfigProvider loaded config: showOptionsScreen=${_config.showOptionsScreen}');
     } catch (e) {
-      print('Error loading app config: $e');
+      print('❌ Error loading app config: $e');
       // Keep default config on error
     }
 
