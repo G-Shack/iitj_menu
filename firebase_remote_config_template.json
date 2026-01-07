@@ -9,10 +9,10 @@
                 "start_time": "7:30",
                 "end_time": "10:00",
                 "veg": [
-                    "Poha (Aloo/Sev), Mint Chutney, Jalebi, Banana(2), Toasted white/whole wheat bread, Butter, Jam, Sugar, Cornflakes/Oats (student can take only one),  Sprouts-boiled chana, Milk(Non-Toned), Tea, Coffee, Bournvita/Horlicks/Boost"
+                    "Idli / Fried Idli, Sambhar, Coconut Chutney, Tomato Chutney, Banana(2), Toasted white/whole wheat bread, Butter, Jam, Sugar, Cornflakes,  Sprouts-boiled chana, Milk(Non-Toned), Tea, Coffee, Bournvita/ Boost"
                 ],
                 "non_veg": [
-                    "Poha and Jalebi, Toasted white/whole wheat bread, Butter, Jam, Sugar, Cornflakes-Oats (student can take only one),  Sprouts-boiled chana, Milk(Non-Toned), Tea, Coffee, Bournvita/Horlicks, Boiled egg (2)"
+                    "Poha, Sambar and Jalebi, Toasted white/whole wheat bread, Butter, Jam, Sugar, Cornflakes-Oats (student can take only one),  Sprouts-boiled chana, Milk(Non-Toned), Tea, Coffee, Bournvita/Horlicks, Boiled egg (2)"
                 ],
                 "jain": [
                     ""
@@ -26,7 +26,7 @@
                 "start_time": "12:15",
                 "end_time": "14:45",
                 "veg": [
-                    "Aata Roti/Multigrain Roti, Plain Rice, Moong Dal, Sick Moong Daal, Soya bean dry, Veg Manchurian, Curd, Salad(Beetroot+tomato+onion+carrot+lemon+chilli), Pickle, Fryums, Ghee"
+                    "Aata Roti/Multigrain Roti, Plain Rice, Moong Masoor Dal, Sick Moong Daal, Mix Veg (carrot matar cabbage ), Malai kofta , Curd, Salad(Beetroot+tomato+onion+carrot+lemon+chilli), Pickle, Ghee, Lizzat papad"
                 ],
                 "non_veg": [
                     "Moong Dal, Malai Kofta, Bhendi Peanut Fry, Seasonal Fruits (2 types), Atta/Multigrain Roti, Curd, Salad(Beetroot+tomato+onion+carrot+lemon+chilli), Pickle, Lizzat Papad,Ghee"
@@ -46,7 +46,7 @@
                     "Dhokla, Chutney(Mint), Milk(Non-Toned), Tea, Coffee"
                 ],
                 "non_veg": [
-                    "Veg Cutlet, Ketchup,  Milk(Non-Toned), Tea, Coffee"
+                    "Maggie, Ketchup, Milk(Non-Toned), Tea, Coffee"
                 ],
                 "jain": [],
                 "special_note_veg": "",
@@ -58,13 +58,13 @@
                 "start_time": "20:00",
                 "end_time": "22:30",
                 "veg": [
-                    "Aata Roti/Multigrain Roti, Plain rice, Veg Khichdi, Dal Tadka(Chana), Sick dal, Gobi Masala, Aloo beans Curry, Fryums, Salad(Cucumber+tomato+onion+carrot+lemon+chilli), Pickle, Ghee , Sheera"
+                    "Aata Roti/Multigrain Roti, Plain rice, Veg Khichdi, Dal Tadka(Chana), Sick dal, Aalo gobi, Mix Veg , Fryums, Salad(Cucumber+tomato+onion+carrot+lemon+chilli), Pickle, Ghee, Stuffed Paratha(Mix Veg/Gobhi), Milk Barfi"
                 ],
                 "non_veg": [
-                    "Mix Dal, Mutter Masala, Boondi, Atta/Multigrain Roti, Salad(Beetroot+tomato+onion+carrot+lemon+chilli), Pickle, Fryums, Ghee, Egg Butter Masala"
+                    "Mix Dal, Mutter Masala, Boondi, Atta/Multigrain Roti, Salad(Beetroot+tomato+onion+carrot+lemon+chilli), Pickle, Fryums,Ghee, Egg Butter Masala"
                 ],
                 "jain": [
-                    "Beans curry"
+                    "Beans Curry"
                 ],
                 "special_note_veg": "",
                 "special_note_non_veg": ""
@@ -77,10 +77,10 @@
                 "start_time": "7:30",
                 "end_time": "10:00",
                 "veg": [
-                    "Aloo Methi stuffed Pratha with green chutney, Curd, Banana(2), Toasted white/whole wheat bread, Butter, Jam, Sugar, Cornflakes/Oats (student can take only one),  Sprouts-boiled chana, Milk(Non-Toned), Tea, Coffee, Bournvita/Horlicks/Boost"
+                    "Methi stuffed Pratha / Gobhi Paratha , Chutney, Curd, Banana(2), Toasted white/whole wheat bread, Butter, Jam, Sugar, Cornflakes,  Sprouts-boiled chana, Milk(Non-Toned), Tea, Coffee, Bournvita / Boost"
                 ],
                 "non_veg": [
-                    "Luchi (Poori) and Ghugni, Toasted white/whole wheat bread, Butter, Jam, Sugar, Cornflakes-Oats (student can take only one),  Sprouts-boiled chana, Milk(Non-Toned), Tea, Coffee, Bournvita/Horlicks, Banana(2)"
+                    "Matar Poori and Sabzi, Toasted white/whole wheat bread, Butter, Jam, Sugar, Cornflakes-Oats (student can take only one),  Sprouts-boiled chana, Milk(Non-Toned), Tea, Coffee, Bournvita/Horlicks, Banana(2)"
                 ],
                 "jain": [
                     ""
@@ -94,7 +94,7 @@
                 "start_time": "12:15",
                 "end_time": "14:45",
                 "veg": [
-                    "Aata Roti/Multigrain Roti, Plain Rice, Rajma Dal, Sick Rajma daal, kaddu dry, Hariyali Kofta, Lassi,  Salad(Cucumber+tomato+onion+carrot+lemon+chilli), Pickle, Fryums, Ghee, Curd, Seasonal Fruits"
+                    "Aata Roti/Multigrain Roti, Plain Rice, Rajma Dal, Sick Rajma , Kaddu fry, Hariyali kofta ,  Salad(Cucumber+tomato+onion+carrot+lemon+chilli), Pickle, Ghee, Fryums"
                 ],
                 "non_veg": [
                     "Rajma Dal, Dum Aloo Banarasi, Mix Veg Dry, Atta/Multigrain Roti, Curd , Salad(Beetroot+tomato+onion+carrot+lemon+chilli), Pickle, Lizzat Papad,Ghee"
@@ -111,10 +111,10 @@
                 "start_time": "17:30",
                 "end_time": "18:30",
                 "veg": [
-                    "Dahi Papdi, Chutney(Green+Red), Milk(Non-Toned), Tea, Coffee"
+                    "Veg Cheese Sandwich/ Aalo grilled Sandwich, Chutney(Green+Red), Milk(Non-Toned), Tea, Coffee"
                 ],
                 "non_veg": [
-                    "Bread Pakora, Ketchup,  Milk(Non-Toned), Tea, Coffee "
+                    "Pyaz Kachori, Ketchup, Milk(Non-Toned), Tea, Coffee"
                 ],
                 "jain": [],
                 "special_note_veg": "",
@@ -126,10 +126,10 @@
                 "start_time": "20:00",
                 "end_time": "22:30",
                 "veg": [
-                    "Aata Roti/Multigrain Roti, Plain rice, Ridged Gourd Daal, Sick Dal, Aloo Deep fry, Fryums, Salad(Beetroot+tomato+onion+carrot+lemon+chilli), Pickle, Ghee, Chole Bhature"
+                    "Aata Roti/Multigrain Roti, Ragi Roti, Plain rice, Ridged Gourd Daal, Sick Dal, Chole Bhatura, Aloo Deep fry, Salad(Beetroot+tomato+onion+carrot+lemon+chilli), Pickle, Ghee, Lizzat papad"
                 ],
                 "non_veg": [
-                    "Khichdi, Aloo Gobi, Veg Chatpata, Atta/Multigrain Roti, Salad(Beetroot+tomato+onion+carrot+lemon+chilli), Pickle, Fryums,Ghee"
+                    "Khichdi, Dry Aloo Masala, Veg Chatpata, Atta/Multigrain Roti, Salad(Beetroot+tomato+onion+carrot+lemon+chilli), Pickle, Fryums,Ghee"
                 ],
                 "jain": [
                     "Matar Paneer"
@@ -145,10 +145,10 @@
                 "start_time": "7:30",
                 "end_time": "10:00",
                 "veg": [
-                    "Idli / Fried Idli, Sambhar, Coconut Chutney, Tomato Chutney, Banana(2), Toasted white/whole wheat bread, Butter, Jam, Sugar, Cornflakes/Oats (student can take only one),  Sprouts-boiled chana, Milk(Non-Toned), Tea, Coffee, Bournvita/Horlicks/Boost"
+                    "Indori Poha (Aloo/Sev), Mint chutney Jalebi, Banana(2), Toasted white/whole wheat bread, Butter, Jam, Sugar, Cornflakes,  Sprouts-boiled chana, Milk(Non-Toned), Tea, Coffee, Bournvita / Boost"
                 ],
                 "non_veg": [
-                    "Idli/ Fried Idli, Sambhar, Coconut Chutney, Tomato Chutney, Toasted white/whole wheat bread, Butter, Jam, Sugar, Cornflakes-Oats (student can take only one),  Sprouts-boiled chana, Milk(Non-Toned), Tea, Coffee, Bournvita/Horlicks, Boiled egg (2)"
+                    "Idli, Fried Idli/Medu Vada , Sambhar, Coconut Chutney, Tomato Chutney, Toasted white/whole wheat bread, Butter, Jam, Sugar, Cornflakes-Oats (student can take only one),  Sprouts-boiled chana, Milk(Non-Toned), Tea, Coffee, Bournvita/Horlicks, Boiled egg (2)"
                 ],
                 "jain": [
                     ""
@@ -162,10 +162,10 @@
                 "start_time": "12:15",
                 "end_time": "14:45",
                 "veg": [
-                    "Aata Roti/Multigrain Roti,  Plain rice, Cucumber Dal, Sick Cucumber Dal, Kadhi pakoda, Achari Aalo / Masala Aalo, Curd, Salad(Beetroot+tomato+onion+carrot+lemon+chilli), Pickle, Fryums, Ghee"
+                    "Aata Roti/Multigrain Roti,  Plain rice, Cucumber Dal, Sick Cucumber Dal, Kadhi pakoda, Achari Aalo / Masala Aalo, Masala chaach, Salad(Beetroot+tomato+onion+carrot+lemon+chilli), Pickle, Ghee, Fryums"
                 ],
                 "non_veg": [
-                    "Masoor Dal, Kadhi pakoda, Dry Aloo Masala, Atta/Multigrain Roti, Lassi, Salad(Beetroot+tomato+onion+carrot+lemon+chilli), Pickle, Lizzat Papad,Ghee"
+                    "Masoor Dal, Kadhi pakoda, Aloo Spring Onion, Atta/Multigrain Roti, Lassi, Salad(Beetroot+tomato+onion+carrot+lemon+chilli), Pickle, Lizzat Papad,Ghee"
                 ],
                 "jain": [
                     "Chana masala dry"
@@ -179,10 +179,10 @@
                 "start_time": "17:30",
                 "end_time": "18:30",
                 "veg": [
-                    "Veg Cutlet/Pakoda, Chutney(Green+Red), Milk(Non-Toned), Tea, Coffee"
+                    "Veg Cutlet/ Bread Pakoda, Chutney(Green+Red), Milk(Non-Toned), Tea, Coffee"
                 ],
                 "non_veg": [
-                    "Pyaz Kachori, Chutney,  Milk(Non-Toned), Tea, Coffee"
+                    "Dahi Vada, Chutney, Milk(Non-Toned), Tea, Coffee"
                 ],
                 "jain": [],
                 "special_note_veg": "",
@@ -194,7 +194,7 @@
                 "start_time": "20:00",
                 "end_time": "22:30",
                 "veg": [
-                    "Aata Roti/Multigrain Roti,  Plain rice, Veg Fried Rice, Urad Dal, Sick Dal, Cabbage pakoda, Matar Paneer, Fryums, Salad(Cucumber+tomato+onion+carrot+lemon+chilli), Pickle, Ghee, Gulab Jamun(2 Pcs)"
+                    "Aata Roti/Multigrain Roti,  Plain rice, Veg Fried Rice, Urad Dal, Sick Dal, Veg Korma , Shahi Paneer, Lizzat Papad, Salad(Cucumber+tomato+onion+carrot+lemon+chilli), Pickle, Ghee,Gulab Jamun (2 pieces)"
                 ],
                 "non_veg": [
                     "Lasooni Dal Tadka, Veg Korma, Carrot Halwa, Atta/Multigrain Roti, Salad(Beetroot+tomato+onion+carrot+lemon+chilli), Pickle,Fryums,Ghee, Chicken Butter Masala"
@@ -213,10 +213,10 @@
                 "start_time": "7:30",
                 "end_time": "10:00",
                 "veg": [
-                    "Hara Matar Poorvi and Sabji, Mint Chutney, Tomato Chutney, Banana(2), Toasted white/whole wheat bread, Butter, Jam, Sugar, Cornflakes/Oats (student can take only one),  Sprouts-boiled chana, Milk(Non-Toned), Tea, Coffee, Bournvita/Horlicks/Boost"
+                    "Ghugni (Aloo Chole Matar) and Ajwain / Palak Poori, , Banana(2), Toasted white/whole wheat bread, Butter, Jam, Sugar, Cornflakes,  Sprouts-boiled chana, Milk(Non-Toned), Tea, Coffee, Bournvita/ Boost"
                 ],
                 "non_veg": [
-                    "Mix veg paratha, Chutney,Curd, Toasted white/whole wheat bread, Butter, Jam, Sugar, Cornflakes-Oats (student can take only one),  Sprouts-boiled chana, Milk(Non-Toned), Tea, Coffee, Bournvita/Horlicks, Banana(2)"
+                    "Gobi paratha, Curd and Chutni, Toasted white/whole wheat bread, Butter, Jam, Sugar, Cornflakes-Oats (student can take only one),  Sprouts-boiled chana, Milk(Non-Toned), Tea, Coffee, Bournvita/Horlicks, Banana(2)"
                 ],
                 "jain": [
                     ""
@@ -230,13 +230,13 @@
                 "start_time": "12:15",
                 "end_time": "14:45",
                 "veg": [
-                    "Aata Roti/Multigrain Roti, Plain Rice, Dal Makhani, Sick Dal, Aalo Gobi matar dry , Dahi Baigan, Lassi, Salad(Cucumber+tomato+onion+carrot+lemon+chilli), Pickle, Fryums, Ghee,  Seasonal Fruits"
+                    "Aata Roti/Multigrain Roti,   Plain Rice, Dal Makhani, Sick Dal, Veg Jalfrezi , Dahi Baigan, Seasonal Fruits, Salad(Cucumber+tomato+onion+carrot+lemon+chilli), Pickle, Ghee, Fryums"
                 ],
                 "non_veg": [
-                    "Channa Dal Fry, Dahi Baingan, Chilly Potato, Seasonal Fruits (2 types), Atta/Multigrain Roti, Curd, Salad(Beetroot+tomato+onion+carrot+lemon+chilli), Pickle, Lizzat Papad,Ghee"
+                    "Channa Dal Fry, Cabbage Poriyal/ Aloo Gobi Dry, Chilly Potato, Seasonal Fruits (2 types), Atta/Multigrain Roti, Curd, Salad(Beetroot+tomato+onion+carrot+lemon+chilli), Pickle, Lizzat Papad,Ghee"
                 ],
                 "jain": [
-                    "Gobhi matar"
+                    "Gobhi masala"
                 ],
                 "special_note_veg": "",
                 "special_note_non_veg": ""
@@ -250,7 +250,7 @@
                     "Samosa, Chutney+Sause, Milk(Non-Toned), Tea, Coffee"
                 ],
                 "non_veg": [
-                    "Dhokla, Chutney / Sweet Corn,  Milk(Non-Toned), Tea, Coffee"
+                    "Dhokla, Chutney / Sweet Corn Chaat, Milk(Non-Toned), Tea, Coffee"
                 ],
                 "jain": [],
                 "special_note_veg": "",
@@ -262,7 +262,7 @@
                 "start_time": "20:00",
                 "end_time": "22:30",
                 "veg": [
-                    "Aata Roti/Multigrain Roti,  Plain rice,  Dal tadka, Sick Dal, Cauliflower fry, Alu- Baigan, Fryums, Salad(Beetroot+tomato+onion+carrot+lemon+chilli), Pickle, Ghee."
+                    "Aata Roti/Multigrain Roti,  Plain rice, Palal Dal, Sick Dal, Cauliflower fry, Aalo nutri gravy, Salad(Beetroot+tomato+onion+carrot+lemon+chilli), Pickle, Ghee, Curd, Lizzat papad"
                 ],
                 "non_veg": [
                     "Veg Fried Rice, Pindi Chole, Capsicum Masala, Dosa, Atta/Multigrain Roti, Salad(Beetroot+tomato+onion+carrot+lemon+chilli), Pickle, Fryums,Ghee"
@@ -281,7 +281,7 @@
                 "start_time": "7:30",
                 "end_time": "10:00",
                 "veg": [
-                    "Uttapam, Sambhar, Coconut chutney, Lusun Chutney, Banana(2), Toasted white/whole wheat bread, Butter, Jam, Sugar, Cornflakes/Oats (student can take only one),  Sprouts-boiled chana, Milk(Non-Toned), Tea, Coffee, Bournvita/Horlicks/Boost"
+                    "Masala Dosa , Sambhar, Coconut Chutney, Lusun Chutney, Banana(2), Toasted white/whole wheat bread, Butter, Jam, Sugar, Cornflakes-Oats (student can take only one),  Sprouts-boiled chana, Milk(Non-Toned), Tea, Coffee, Bournvita / Boost"
                 ],
                 "non_veg": [
                     "Uttapam, Sambhar, Coconut Chutney, Toasted white/whole wheat bread, Butter, Jam, Sugar, Cornflakes-Oats (student can take only one),  Sprouts-boiled chana, Milk(Non-Toned), Tea, Coffee, Bournvita/Horlicks, Boiled egg (2)"
@@ -298,7 +298,7 @@
                 "start_time": "12:15",
                 "end_time": "14:45",
                 "veg": [
-                    "Aata Roti/Multigrain Roti,  Plain Rice,Mix dal, Chole Masala, Sick Dal, Mixed Vegetable dry, Curd, Salad(Beetroot+tomato+onion+carrot+lemon+chilli), Pickle, Fryums, Ghee"
+                    "Aata Roti/Multigrain Roti,  Plain Rice, Moong dal, Sick Dal, Cabbage with peas ,Punjabi chole  , Curd, Salad(Beetroot+tomato+onion+carrot+lemon+chilli), Pickle, Ghee, Lizzat papad"
                 ],
                 "non_veg": [
                     "Dal Panchmahal, Cauliflower Fry, Hariyali Kofta, Atta/Multigrain Roti, Lassi , Salad(Beetroot+tomato+onion+carrot+lemon+chilli), Pickle, Lizzat Papad,Ghee"
@@ -315,10 +315,7 @@
                 "start_time": "17:30",
                 "end_time": "18:30",
                 "veg": [
-                    "SPav Bhaji, Chutney(Green+Red), Chopped Onion, Milk(Non-Toned), Tea, Coffee",
-                    "Milk",
-                    "Tea",
-                    "Coffee"
+                    "Pav Bhaji, Chutney(Green+Red), Chopped Onion, Milk(Non-Toned), Tea, Coffee"
                 ],
                 "non_veg": [
                     "Samosa, Chutney,  Milk(Non-Toned), Tea, Coffee"
@@ -333,13 +330,13 @@
                 "start_time": "20:00",
                 "end_time": "22:30",
                 "veg": [
-                    "Aata Roti/Multigrain Roti,  Plain rice, Navratan Pulao, Masoor Dal, Sick Dal, Kaccha kela dry, Paneer Curry, Fryums, Salad(Cucumber+tomato+onion+carrot+lemon+chilli), Pickle, Ghee, Mawa kheer"
+                    "Aata Roti/Multigrain Roti,  Plain rice, Navratan Pulao, Masoor Dal, Sick Dal, Aalo brinjal fry, Palak Paneer , Fryums, Salad(Cucumber+tomato+onion+carrot+lemon+chilli), Pickle, Ghee, Mawa Kheer"
                 ],
                 "non_veg": [
                     "Moong Dal,Veg Biriyani, Alu Soyabin Dry,  Milk Barfi/Coconut Barfi, Atta/Multigrain Roti, Salad(Beetroot+tomato+onion+carrot+lemon+chilli), Pickle,Fryums,Ghee, Egg curry"
                 ],
                 "jain": [
-                    ""
+                    "Papad ki sabzi"
                 ],
                 "special_note_veg": "",
                 "special_note_non_veg": ""
@@ -352,7 +349,7 @@
                 "start_time": "8:00",
                 "end_time": "10:30",
                 "veg": [
-                    "Aloo Pyaz Paratha/Mix Veg paratha, Curd, Tomato Chutney, Pickle, Banana(2), Toasted white/whole wheat bread, Butter, Jam, Sugar, Cornflakes/Oats (student can take only one),  Sprouts-boiled chana, Milk(Non-Toned), Tea, Coffee, Bournvita/Horlicks/Boost"
+                    "Aloo Pyaz Paratha/Mix Veg paratha, Curd, Tomato Chutney, Pickle, Banana(2), Toasted white/whole wheat bread, Butter, Jam, Sugar, Cornflakes,  Sprouts-boiled chana, Milk(Non-Toned), Tea, Coffee, Bournvita / Boost"
                 ],
                 "non_veg": [
                     "Aloo Pyaz Paratha, Curd, Mint Chutney, Pickle, Toasted white/whole wheat bread, Butter, Jam, Sugar, Cornflakes-Oats (student can take only one),  Sprouts-boiled chana, Milk(Non-Toned), Tea, Coffee, Bournvita/Horlicks, Boiled egg (2)"
@@ -369,12 +366,14 @@
                 "start_time": "12:30",
                 "end_time": "15:00",
                 "veg": [
-                    "Aata Roti/Multigrain Roti, Plain Rice, Dal (Masoor), Sick Dal, Jira+ green dhaniya aloo, lauki chana grevi,Vegitable Mix khichdi, Curd, Salad(Cucumber+tomato+onion+carrot+lemon+chilli), Pickle, Fryums, Ghee"
+                    "Aata Roti/Multigrain Roti,   Plain Rice, Dal Tadka(Masoor), Sick Dal,  Mix Veg,  Matar chole,Veg khichdi ,Curd, Salad(Cucumber+tomato+onion+carrot+lemon+chilli), Pickle, Ghee, Lizzat Papad"
                 ],
                 "non_veg": [
-                    " Dal Tadka, Cabbage Pakoda, Mix Vegetables in Hot Garlic Sauce, Atta/Multigrain Roti, Curd, Salad(Beetroot+tomato+onion+carrot+lemon+chilli), Pickle, Lizzat Papad,Ghee"
+                    "Dal Tadka, Cabbage Pakoda, Veg Korma, Atta/Multigrain Roti, Curd, Salad(Beetroot+tomato+onion+carrot+lemon+chilli), Pickle, Lizzat Papad,Ghee"
                 ],
-                "jain": [],
+                "jain": [
+                    "Methi matar malai"
+                ],
                 "special_note_veg": "",
                 "special_note_non_veg": ""
             },
@@ -384,10 +383,10 @@
                 "start_time": "17:30",
                 "end_time": "18:30",
                 "veg": [
-                    "pasta / macroni , ketchup, Milk(Non-Toned), Tea, Coffee"
+                    "Noodles/ Macroni, Sause, Milk(Non-Toned), Tea, Coffee"
                 ],
                 "non_veg": [
-                    "Pav Bhaji,  Milk(Non-Toned), Tea, Coffee"
+                    "Pav Bhaji/ Vada Pav, Chutney, Milk(Non-Toned), Tea, Coffee"
                 ],
                 "jain": [],
                 "special_note_veg": "",
@@ -399,14 +398,12 @@
                 "start_time": "20:00",
                 "end_time": "22:30",
                 "veg": [
-                    "Aata Roti/Multigrain Roti,  Plain rice, Daal Tadka, Sick Dal, Soyabeen Fry, Mix veg., Lizzat Papad, Salad(Beetroot+tomato+onion+carrot+lemon+chilli), Pickle, Ghee, Chutney(Mint+Coconut)"
+                    "Aata Roti/Multigrain Roti,  Plain rice, Daal Dhoiki, Sick Dal, Aalo palak (gravy), Bhindi peanut fry, Salad(Beetroot+tomato+onion+carrot+lemon+chilli), Pickle, Ghee, Chutney(Mint+Coconut), Fryums"
                 ],
                 "non_veg": [
                     "Plain rice, Urad Dal, Chole Bhature, Aloo Palak, Atta/Multigrain Roti, Salad(Beetroot+tomato+onion+carrot+lemon+chilli), Pickle,Fryums, Ghee"
                 ],
-                "jain": [
-                    "papad sabzi"
-                ],
+                "jain": [],
                 "special_note_veg": "",
                 "special_note_non_veg": ""
             }
@@ -418,7 +415,7 @@
                 "start_time": "8:00",
                 "end_time": "10:30",
                 "veg": [
-                    "Masala Dosa , Sambhar, Coconut Chutney, Lusun Chutney, Banana(2), Toasted white/whole wheat bread, Butter, Jam, Sugar, Cornflakes/Oats (student can take only one),  Sprouts-boiled chana, Milk(Non-Toned), Tea, Coffee, Bournvita/Horlicks/Boost"
+                    "Uttapam, Sambhar, Coconut chutney, Banana(2), Toasted white/whole wheat bread, Butter, Jam, Sugar, Cornflakes,  Sprouts-boiled chana, Milk(Non-Toned), Tea, Coffee, Bournvita/ Boost"
                 ],
                 "non_veg": [
                     "Masala Dosa, Sambhar, Coconut Chutney, Toasted white/whole wheat bread, Butter, Jam, Sugar, Cornflakes-Oats (student can take only one),  Sprouts-boiled chana, Milk(Non-Toned), Tea, Coffee, Bournvita/Horlicks, Boiled egg (2)"
@@ -435,7 +432,7 @@
                 "start_time": "12:30",
                 "end_time": "15:00",
                 "veg": [
-                    "Aata Roti/Multigrain Roti,  Plain Rice, Channa dal fry, Sick Dal, Cabbage matar Fry, White matar chhola, Curd, Salad(Beetroot+tomato+onion+carrot+lemon+chilli), Pickle, Fryums, Ghee"
+                    "Aata Roti/Multigrain Roti,  Plain Rice, Channa dal fry, Sick Dal, Cabbage pokoda ,matar masala  , Curd, Salad(Beetroot+tomato+onion+carrot+lemon+chilli), Pickle,Ghee, Seasonal fruits, Fryums"
                 ],
                 "non_veg": [
                     "Dal Makhani, Veg Manchurian, Aloo Deep Fry, Atta/Multigrain Roti, Lassi, Salad(Beetroot+tomato+onion+carrot+lemon+chilli), Pickle, Lizzat Papad, Ghee"
@@ -452,10 +449,10 @@
                 "start_time": "17:30",
                 "end_time": "18:30",
                 "veg": [
-                    "Pani Puri with mashed masala aloo and chana, Chutney(Green+Red), Chopped Onion, Milk(Non-Toned), Tea, Coffee"
+                    "Dahi Vada , Chutney, Milk(Non-Toned), Tea, Coffee"
                 ],
                 "non_veg": [
-                    "Pani Puri,  Milk(Non-Toned), Tea, Coffee"
+                    "Veg Cutlet, Ketchup, Milk(Non-Toned), Tea, Coffee"
                 ],
                 "jain": [],
                 "special_note_veg": "",
@@ -467,7 +464,7 @@
                 "start_time": "20:00",
                 "end_time": "22:30",
                 "veg": [
-                    "Aata Roti/Multigrain Roti,  Plain rice, Lasooni Daal Tadka, Sick dal, Cluster beans fry, Paneer Biryani, Lizzat Papad, Salad(Beetroot+tomato+onion+carrot+lemon+chilli), Pickle, Ghee, Gazar ka halwa"
+                    "Aata Roti/Multigrain Roti,  Plain rice, Veg Biryani, Lasooni Daal Tadka, Sick dal, Kaccha kela, Matar  Paneer , Lizzat Papad, Salad(Beetroot+tomato+onion+carrot+lemon+chilli), Pickle, Ghee, Carrot Halwa"
                 ],
                 "non_veg": [
                     " Dal Tadka, Aloo Mutter Curry, Gulab Jamun,Raita, Atta/Multigrain Roti, Salad(Beetroot+tomato+onion+carrot+lemon+chilli), Pickle, Fryums, Ghee, Chicken Biryani"

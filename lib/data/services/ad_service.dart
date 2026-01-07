@@ -1,6 +1,7 @@
 import 'dart:io';
 import 'package:flutter/foundation.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
+import 'package:app_tracking_transparency/app_tracking_transparency.dart';
 
 class AdService {
   static final AdService _instance = AdService._internal();
@@ -24,7 +25,7 @@ class AdService {
     }
     // TODO: Replace with your production Ad Unit IDs
     if (Platform.isAndroid) {
-      return 'ca-app-pub-6272394019031240/XXXXXXXXXX'; // Your Android banner ID
+      return 'ca-app-pub-6272394019031240/7506271065'; // Your Android banner ID
     } else if (Platform.isIOS) {
       return 'ca-app-pub-6272394019031240/1514867349'; // Your iOS banner ID
     }
@@ -34,8 +35,36 @@ class AdService {
   bool get isBannerAdLoaded => _isBannerAdLoaded;
   BannerAd? get bannerAd => _bannerAd;
 
+  /// Request App Tracking Transparency permission (iOS 14+)
+  /// Must be called BEFORE initializing ads
+  Future<void> requestTrackingPermission() async {
+    if (!Platform.isIOS) return;
+
+    try {
+      // Check current status first
+      final status = await AppTrackingTransparency.trackingAuthorizationStatus;
+      debugPrint('📢 ATT current status: $status');
+
+      // Only request if not determined yet
+      if (status == TrackingStatus.notDetermined) {
+        // Small delay to ensure app is fully loaded (Apple requirement)
+        await Future.delayed(const Duration(milliseconds: 500));
+
+        // Request permission - this shows the iOS dialog
+        final result =
+            await AppTrackingTransparency.requestTrackingAuthorization();
+        debugPrint('📢 ATT permission result: $result');
+      }
+    } catch (e) {
+      debugPrint('📢 ATT request error: $e');
+    }
+  }
+
   Future<void> initialize() async {
     if (_isInitialized) return;
+
+    // Request ATT permission BEFORE initializing ads (iOS requirement)
+    await requestTrackingPermission();
 
     await MobileAds.instance.initialize();
     _isInitialized = true;
