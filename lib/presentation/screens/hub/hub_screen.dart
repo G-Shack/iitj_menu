@@ -156,7 +156,24 @@ class _HubScreenState extends State<HubScreen> with TickerProviderStateMixin {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                const SizedBox(height: AppDimensions.xl),
+                // Settings button row
+                FadeTransition(
+                  opacity: _fadeController,
+                  child: Align(
+                    alignment: Alignment.topRight,
+                    child: IconButton(
+                      onPressed: () =>
+                          Navigator.pushNamed(context, '/settings'),
+                      icon: Icon(
+                        Icons.settings_rounded,
+                        color: isDark
+                            ? AppColors.darkTextSecondary
+                            : AppColors.lightTextSecondary,
+                      ),
+                      tooltip: 'Settings',
+                    ),
+                  ),
+                ),
 
                 // Header
                 FadeTransition(

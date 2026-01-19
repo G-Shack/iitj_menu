@@ -19,8 +19,7 @@ class AppConfigProvider extends ChangeNotifier {
     notifyListeners();
 
     try {
-      // Remote config should already be initialized in main.dart
-      // Just get the config (no need to re-fetch)
+      // Load config from current remote config values (may be defaults if no fetch yet)
       _config = _remoteConfigService.getAppConfig();
       print(
           '✅ AppConfigProvider loaded config: showOptionsScreen=${_config.showOptionsScreen}');
@@ -31,6 +30,24 @@ class AppConfigProvider extends ChangeNotifier {
 
     _isLoading = false;
     notifyListeners();
+
+    // Trigger background fetch to get latest config (non-blocking)
+    _fetchInBackground();
+  }
+
+  Future<void> _fetchInBackground() async {
+    try {
+      await _remoteConfigService.fetchAndActivate();
+      final newConfig = _remoteConfigService.getAppConfig();
+      if (newConfig != _config) {
+        _config = newConfig;
+        print('✅ AppConfigProvider updated from background fetch');
+        notifyListeners();
+      }
+    } catch (e) {
+      print('⚠️ Background config fetch failed: $e');
+      // Silent fail - we already have defaults/cached config
+    }
   }
 
   Future<void> refresh() async {

@@ -22,7 +22,8 @@ class RemoteConfigService {
 
     await _remoteConfig.setConfigSettings(
       RemoteConfigSettings(
-        fetchTimeout: const Duration(seconds: 30),
+        // Reduced timeout for better UX on slow networks
+        fetchTimeout: const Duration(seconds: 10),
         // For production: use 1 hour interval
         minimumFetchInterval: const Duration(hours: 1),
       ),

@@ -3,6 +3,8 @@ import 'package:provider/provider.dart';
 import '../../../core/constants/app_colors.dart';
 import '../../../core/constants/app_text_styles.dart';
 import '../../../providers/app_config_provider.dart';
+import '../../../providers/notification_provider.dart';
+import '../../widgets/notification_permission_dialog.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
@@ -77,16 +79,63 @@ class _SplashScreenState extends State<SplashScreen>
     // Wait for splash animation
     await Future.delayed(const Duration(milliseconds: 2500));
 
-    // Wait for app config to be loaded
+    // Wait for app config to be loaded with a maximum timeout
+    // This prevents infinite wait on slow/no network
     if (mounted) {
       final appConfigProvider = context.read<AppConfigProvider>();
+
+      // Maximum wait time of 3 seconds for config to load
+      // After that, proceed with defaults
+      const maxWaitTime = Duration(seconds: 3);
+      final startTime = DateTime.now();
+
       while (appConfigProvider.isLoading) {
         await Future.delayed(const Duration(milliseconds: 100));
         if (!mounted) return;
+
+        // Check if we've exceeded max wait time
+        if (DateTime.now().difference(startTime) > maxWaitTime) {
+          debugPrint('⚠️ Config loading timeout - proceeding with defaults');
+          break;
+        }
       }
 
       if (mounted) {
-        Navigator.of(context).pushReplacementNamed('/hub');
+        // Check if we need to show notification permission dialog
+        final notificationProvider = context.read<NotificationProvider>();
+
+        // Wait for notification provider to finish loading (max 2 seconds)
+        const maxNotificationWait = Duration(seconds: 2);
+        final notificationStartTime = DateTime.now();
+
+        while (notificationProvider.isLoading) {
+          await Future.delayed(const Duration(milliseconds: 100));
+          if (!mounted) return;
+
+          if (DateTime.now().difference(notificationStartTime) >
+              maxNotificationWait) {
+            debugPrint('⚠️ Notification provider loading timeout');
+            break;
+          }
+        }
+
+        // Show dialog only if permission hasn't been asked yet
+        if (mounted && !notificationProvider.hasAskedPermission) {
+          await showNotificationPermissionDialog(
+            context,
+            onEnable: () async {
+              await notificationProvider.requestPermissionAndEnable();
+            },
+            onSkip: () {
+              // Just mark as asked, don't enable
+              notificationProvider.disableNotifications();
+            },
+          );
+        }
+
+        if (mounted) {
+          Navigator.of(context).pushReplacementNamed('/hub');
+        }
       }
     }
   }

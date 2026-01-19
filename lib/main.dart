@@ -8,12 +8,15 @@ import 'core/theme/app_theme.dart';
 import 'providers/dietary_preference_provider.dart';
 import 'providers/menu_provider.dart';
 import 'providers/app_config_provider.dart';
+import 'providers/notification_provider.dart';
 import 'data/services/remote_config_service.dart';
 import 'data/services/cache_service.dart';
 import 'data/services/ad_service.dart';
+import 'data/services/notification_service.dart';
 import 'presentation/screens/splash/splash_screen.dart';
 import 'presentation/screens/home/home_screen.dart';
 import 'presentation/screens/hub/hub_screen.dart';
+import 'presentation/screens/settings/settings_screen.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -30,18 +33,29 @@ void main() async {
   final cacheService = CacheService();
   await cacheService.initialize();
 
+  // Initialize Notification Service
+  final notificationService = NotificationService();
+  try {
+    await notificationService.initialize();
+    debugPrint('✅ Notification Service initialized');
+  } catch (e) {
+    debugPrint('⚠️ Notification Service initialization failed: $e');
+  }
+
   // Initialize Remote Config (do this ONCE before creating providers)
   final remoteConfig = FirebaseRemoteConfig.instance;
   final remoteConfigService = RemoteConfigService(remoteConfig);
 
-  // Initialize and fetch remote config before app starts
+  // Initialize remote config with defaults only (non-blocking)
+  // Actual fetch will happen in background to not block app startup
   try {
     await remoteConfigService.initialize();
-    await remoteConfigService.fetchAndActivate();
-    debugPrint('✅ Remote Config fetched successfully at startup');
+    debugPrint('✅ Remote Config initialized with defaults');
+    // Don't await fetch here - let providers handle it in background
+    // This prevents app from getting stuck on slow networks
   } catch (e) {
-    debugPrint('⚠️ Remote Config initial fetch failed: $e');
-    // App will continue with defaults/cache
+    debugPrint('⚠️ Remote Config initialization failed: $e');
+    // App will continue with defaults
   }
 
   // Set system UI overlays
@@ -61,6 +75,10 @@ void main() async {
         ),
         ChangeNotifierProvider(
           create: (_) => AppConfigProvider(remoteConfigService)..initialize(),
+        ),
+        ChangeNotifierProvider(
+          create: (_) =>
+              NotificationProvider(notificationService)..initialize(),
         ),
       ],
       child: IITJMenuApp(remoteConfigService: remoteConfigService),
@@ -114,6 +132,12 @@ class _IITJMenuAppState extends State<IITJMenuApp> with WidgetsBindingObserver {
         context.read<MenuProvider>().refresh();
         context.read<AppConfigProvider>().refresh();
       }
+      // Always reschedule notifications to keep them up to date
+      // This ensures we always have the next 7 days scheduled
+      final notificationProvider = context.read<NotificationProvider>();
+      if (notificationProvider.isEnabled) {
+        NotificationService().rescheduleIfNeeded();
+      }
     }
   }
 
@@ -130,6 +154,7 @@ class _IITJMenuAppState extends State<IITJMenuApp> with WidgetsBindingObserver {
         '/': (context) => const SplashScreen(),
         '/hub': (context) => const HubScreen(),
         '/home': (context) => const HomeScreen(),
+        '/settings': (context) => const SettingsScreen(),
       },
     );
   }
