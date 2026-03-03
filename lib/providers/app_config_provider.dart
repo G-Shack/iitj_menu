@@ -8,7 +8,9 @@ class AppConfigProvider extends ChangeNotifier {
   AppConfigModel _config = const AppConfigModel();
   bool _isLoading = true;
 
-  AppConfigProvider(this._remoteConfigService);
+  AppConfigProvider(this._remoteConfigService) {
+    _remoteConfigService.addOnUpdateListener(_onRemoteConfigUpdated);
+  }
 
   AppConfigModel get config => _config;
   bool get isLoading => _isLoading;
@@ -50,6 +52,21 @@ class AppConfigProvider extends ChangeNotifier {
     }
   }
 
+  void _onRemoteConfigUpdated(Set<String> updatedKeys) {
+    if (updatedKeys.contains('app_config')) {
+      try {
+        final newConfig = _remoteConfigService.getAppConfig();
+        if (newConfig != _config) {
+          _config = newConfig;
+          notifyListeners();
+          print('\u2705 AppConfig auto-updated from real-time Remote Config');
+        }
+      } catch (e) {
+        print('\u274c Error applying real-time app config update: $e');
+      }
+    }
+  }
+
   Future<void> refresh() async {
     try {
       await _remoteConfigService.fetchAndActivate();
@@ -58,5 +75,11 @@ class AppConfigProvider extends ChangeNotifier {
     } catch (e) {
       print('Error refreshing app config: $e');
     }
+  }
+
+  @override
+  void dispose() {
+    _remoteConfigService.removeOnUpdateListener(_onRemoteConfigUpdated);
+    super.dispose();
   }
 }

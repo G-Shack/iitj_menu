@@ -4,8 +4,8 @@ import '../../../core/constants/app_dimensions.dart';
 import '../../../core/constants/app_text_styles.dart';
 
 class NotificationPermissionDialog extends StatefulWidget {
-  final VoidCallback onEnable;
-  final VoidCallback onSkip;
+  final Future<void> Function() onEnable;
+  final Future<void> Function() onSkip;
 
   const NotificationPermissionDialog({
     super.key,
@@ -183,7 +183,9 @@ class _NotificationPermissionDialogState
                       SizedBox(
                         width: double.infinity,
                         child: ElevatedButton(
-                          onPressed: widget.onEnable,
+                          onPressed: () async {
+                            await widget.onEnable();
+                          },
                           style: ElevatedButton.styleFrom(
                             backgroundColor: AppColors.primary,
                             foregroundColor: Colors.white,
@@ -218,7 +220,9 @@ class _NotificationPermissionDialogState
 
                       // Skip button
                       TextButton(
-                        onPressed: widget.onSkip,
+                        onPressed: () async {
+                          await widget.onSkip();
+                        },
                         child: Text(
                           'Maybe Later',
                           style: AppTextStyles.body.copyWith(
@@ -276,7 +280,7 @@ class _NotificationPermissionDialogState
 Future<void> showNotificationPermissionDialog(
   BuildContext context, {
   required Future<void> Function() onEnable,
-  required VoidCallback onSkip,
+  required Future<void> Function() onSkip,
 }) async {
   await showDialog(
     context: context,
@@ -284,12 +288,18 @@ Future<void> showNotificationPermissionDialog(
     barrierColor: Colors.black54,
     builder: (context) => NotificationPermissionDialog(
       onEnable: () async {
-        Navigator.of(context).pop();
+        // IMPORTANT: Await the callback BEFORE popping to ensure persistence
         await onEnable();
+        if (context.mounted) {
+          Navigator.of(context).pop();
+        }
       },
-      onSkip: () {
-        Navigator.of(context).pop();
-        onSkip();
+      onSkip: () async {
+        // IMPORTANT: Await the callback BEFORE popping to ensure persistence
+        await onSkip();
+        if (context.mounted) {
+          Navigator.of(context).pop();
+        }
       },
     ),
   );

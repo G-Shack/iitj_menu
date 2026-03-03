@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'dart:convert';
 import 'package:firebase_remote_config/firebase_remote_config.dart';
 import '../models/day_menu_model.dart';
@@ -10,6 +11,7 @@ class RemoteConfigService {
   static const String _appConfigKey = 'app_config';
 
   bool _isInitialized = false;
+  StreamSubscription<RemoteConfigUpdate>? _configSubscription;
 
   RemoteConfigService(this._remoteConfig);
 
@@ -38,6 +40,56 @@ class RemoteConfigService {
 
     _isInitialized = true;
     print('🔥 Remote Config initialized');
+
+    // Start listening for real-time updates
+    _startRealTimeListener();
+  }
+
+  /// Listens for real-time Remote Config changes from the Firebase console.
+  /// When a change is detected, it auto-activates and notifies all registered callbacks.
+  void _startRealTimeListener() {
+    _configSubscription?.cancel();
+    _configSubscription = _remoteConfig.onConfigUpdated.listen(
+      (RemoteConfigUpdate event) async {
+        print(
+            '🔥 Real-time config update received! Keys: ${event.updatedKeys}');
+        try {
+          // Activate the fetched values immediately
+          await _remoteConfig.activate();
+          print('🔥 Real-time config activated');
+
+          // Notify all registered listeners
+          for (final callback in _onUpdateCallbacks) {
+            callback(event.updatedKeys);
+          }
+        } catch (e) {
+          print('❌ Error activating real-time config: $e');
+        }
+      },
+      onError: (Object error) {
+        print('❌ Real-time config listener error: $error');
+      },
+    );
+    print('🔥 Real-time config listener started');
+  }
+
+  // Callbacks registered by providers to react to real-time updates
+  final List<void Function(Set<String> updatedKeys)> _onUpdateCallbacks = [];
+
+  /// Register a callback to be invoked when Remote Config values change in real-time.
+  void addOnUpdateListener(void Function(Set<String> updatedKeys) callback) {
+    _onUpdateCallbacks.add(callback);
+  }
+
+  /// Remove a previously registered callback.
+  void removeOnUpdateListener(void Function(Set<String> updatedKeys) callback) {
+    _onUpdateCallbacks.remove(callback);
+  }
+
+  /// Clean up the real-time listener.
+  void dispose() {
+    _configSubscription?.cancel();
+    _onUpdateCallbacks.clear();
   }
 
   Future<bool> fetchAndActivate() async {

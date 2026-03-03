@@ -25,10 +25,10 @@ class NotificationService {
     'breakfast': [
       '☀️ Rise and shine, champ! Breakfast awaits!',
       '🍳 Your morning fuel is ready. Don\'t skip!',
-      '🌅 Early bird gets the best dosa! Get moving!',
+      '🌅 Early bird gets the best BF! Get moving!',
       '☕ Chai + Breakfast = Perfect morning combo!',
       '🔋 Recharge mode: ON. Breakfast served!',
-      '🌞 Wakey wakey! Hot parathas waiting for you!',
+      '🌞 Wakey wakey! Hot BF waiting for you!',
       '💪 Champions don\'t skip breakfast. Mess is open!',
       '🥐 Fresh breakfast alert! Your stomach called.',
     ],
@@ -45,7 +45,7 @@ class NotificationService {
     'snacks': [
       '☕ Chai time! Don\'t miss the snacks!',
       '🍪 Snack attack incoming! Mess is open!',
-      '🫖 Evening chai + samosa = happiness!',
+      '🫖 Evening chai + Snacks = happiness!',
       '✨ Take a break! Snacks are waiting!',
       '🎉 Study break approved! Snacks served!',
       '🍩 You deserve this snack break!',
@@ -127,13 +127,20 @@ class NotificationService {
   /// Check if permission has been asked before
   Future<bool> hasAskedPermission() async {
     final prefs = await SharedPreferences.getInstance();
-    return prefs.getBool(_permissionAskedKey) ?? false;
+    final asked = prefs.getBool(_permissionAskedKey) ?? false;
+    debugPrint('🔔 hasAskedPermission check: $asked');
+    return asked;
   }
 
   /// Mark that we've asked for permission
   Future<void> markPermissionAsked() async {
     final prefs = await SharedPreferences.getInstance();
-    await prefs.setBool(_permissionAskedKey, true);
+    final success = await prefs.setBool(_permissionAskedKey, true);
+    debugPrint('🔔 markPermissionAsked: success=$success');
+
+    // Verify it was actually saved by reading it back
+    final verified = prefs.getBool(_permissionAskedKey) ?? false;
+    debugPrint('🔔 markPermissionAsked verified: $verified');
   }
 
   /// Request notification permission
@@ -284,15 +291,15 @@ class NotificationService {
   String _getMealTitle(String mealType) {
     switch (mealType) {
       case 'breakfast':
-        return '🍳 Breakfast Time!';
+        return 'Breakfast Time!';
       case 'lunch':
-        return '🍛 Lunch Time!';
+        return 'Lunch Time!';
       case 'snacks':
-        return '☕ Snacks Time!';
+        return 'Snacks Time!';
       case 'dinner':
-        return '🌙 Dinner Time!';
+        return 'Dinner Time!';
       default:
-        return '🍽️ Meal Time!';
+        return 'Meal Time!';
     }
   }
 

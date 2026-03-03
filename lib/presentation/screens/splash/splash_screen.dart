@@ -108,7 +108,8 @@ class _SplashScreenState extends State<SplashScreen>
         const maxNotificationWait = Duration(seconds: 2);
         final notificationStartTime = DateTime.now();
 
-        while (notificationProvider.isLoading) {
+        while (notificationProvider.isLoading ||
+            !notificationProvider.isInitialized) {
           await Future.delayed(const Duration(milliseconds: 100));
           if (!mounted) return;
 
@@ -119,16 +120,24 @@ class _SplashScreenState extends State<SplashScreen>
           }
         }
 
-        // Show dialog only if permission hasn't been asked yet
-        if (mounted && !notificationProvider.hasAskedPermission) {
+        // Show dialog only if permission hasn't been asked yet and provider is properly initialized
+        if (mounted &&
+            notificationProvider.isInitialized &&
+            !notificationProvider.hasAskedPermission) {
+          // Mark permission as asked IMMEDIATELY before showing dialog.
+          // This is the critical fix: we persist the flag directly here,
+          // rather than relying on the dialog's button callbacks to do it.
+          // Button.onPressed is VoidCallback and never awaits async closures,
+          // so SharedPreferences writes in callbacks can get lost in release mode.
+          await notificationProvider.markAskedPermission();
+
           await showNotificationPermissionDialog(
             context,
             onEnable: () async {
               await notificationProvider.requestPermissionAndEnable();
             },
-            onSkip: () {
-              // Just mark as asked, don't enable
-              notificationProvider.disableNotifications();
+            onSkip: () async {
+              await notificationProvider.disableNotifications();
             },
           );
         }

@@ -5,35 +5,66 @@ class NotificationProvider extends ChangeNotifier {
   final NotificationService _notificationService;
 
   bool _isEnabled = false;
-  bool _isLoading = false;
+  bool _isLoading = true; // Start as true to ensure we wait for initialization
   bool _hasAskedPermission = false;
+  bool _isInitialized = false;
 
   NotificationProvider(this._notificationService);
 
   bool get isEnabled => _isEnabled;
   bool get isLoading => _isLoading;
   bool get hasAskedPermission => _hasAskedPermission;
+  bool get isInitialized => _isInitialized;
 
   /// Initialize the provider and load saved state
   Future<void> initialize() async {
+    if (_isInitialized) return;
+
     _isLoading = true;
     notifyListeners();
 
+    // CRITICAL: Read SharedPreferences flags FIRST, independently of
+    // notification service initialization. These only need SharedPreferences
+    // and must not be gated behind the notification plugin init, which can
+    // throw in Android release builds (AOT/timezone/platform channel issues).
+    try {
+      _hasAskedPermission = await _notificationService.hasAskedPermission();
+      _isEnabled = await _notificationService.areNotificationsEnabled();
+      debugPrint(
+          '🔔 Prefs loaded - enabled: $_isEnabled, asked: $_hasAskedPermission');
+    } catch (e) {
+      debugPrint('❌ Error reading notification prefs: $e');
+    }
+
+    // Now initialize the notification plugin (may fail in release builds)
     try {
       await _notificationService.initialize();
-      _isEnabled = await _notificationService.areNotificationsEnabled();
-      _hasAskedPermission = await _notificationService.hasAskedPermission();
 
-      // Reschedule notifications if enabled (ensures we have upcoming week scheduled)
+      debugPrint('🔔 NotificationService initialized successfully');
+
+      // Reschedule notifications if enabled
       if (_isEnabled) {
         await _notificationService.rescheduleIfNeeded();
       }
     } catch (e) {
-      debugPrint('❌ Error initializing notifications: $e');
+      debugPrint('❌ Error initializing notification service: $e');
     }
 
+    _isInitialized = true;
     _isLoading = false;
     notifyListeners();
+  }
+
+  /// Mark that the permission dialog has been shown.
+  /// Call this BEFORE showing the dialog to guarantee persistence.
+  Future<void> markAskedPermission() async {
+    try {
+      await _notificationService.markPermissionAsked();
+      _hasAskedPermission = true;
+      notifyListeners();
+    } catch (e) {
+      debugPrint('❌ Error marking permission asked: $e');
+    }
   }
 
   /// Request permission and enable notifications if granted

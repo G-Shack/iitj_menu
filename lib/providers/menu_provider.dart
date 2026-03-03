@@ -13,7 +13,10 @@ class MenuProvider extends ChangeNotifier {
   String? _error;
   DateTime? _lastUpdated;
 
-  MenuProvider(this._remoteConfigService, this._cacheService);
+  MenuProvider(this._remoteConfigService, this._cacheService) {
+    // Listen for real-time Remote Config updates
+    _remoteConfigService.addOnUpdateListener(_onRemoteConfigUpdated);
+  }
 
   Map<String, DayMenu> get weeklyMenu => _weeklyMenu;
   bool get isLoading => _isLoading;
@@ -146,7 +149,46 @@ class MenuProvider extends ChangeNotifier {
     }
   }
 
+  /// Called automatically when Remote Config pushes a real-time update.
+  void _onRemoteConfigUpdated(Set<String> updatedKeys) {
+    print('🔄 Menu provider received real-time update for keys: $updatedKeys');
+    // If the weekly menu or version changed, reload data
+    if (updatedKeys.contains('weekly_menu') ||
+        updatedKeys.contains('menu_version')) {
+      _applyRemoteUpdate();
+    }
+  }
+
+  /// Apply the already-activated Remote Config values to the UI and cache.
+  Future<void> _applyRemoteUpdate() async {
+    try {
+      final newMenu = _remoteConfigService.getWeeklyMenu();
+      if (newMenu.isNotEmpty) {
+        _weeklyMenu = newMenu;
+        _lastUpdated = DateTime.now();
+        _error = null;
+
+        // Update the cache
+        await _cacheService.cacheMenu(
+          _weeklyMenu,
+          _remoteConfigService.menuVersion,
+        );
+
+        notifyListeners();
+        print('✅ Menu auto-updated from real-time Remote Config');
+      }
+    } catch (e) {
+      print('❌ Error applying real-time menu update: $e');
+    }
+  }
+
   Future<void> refresh() async {
     await fetchMenu();
+  }
+
+  @override
+  void dispose() {
+    _remoteConfigService.removeOnUpdateListener(_onRemoteConfigUpdated);
+    super.dispose();
   }
 }
